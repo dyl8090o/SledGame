@@ -15,6 +15,7 @@
         <h>Sled Game</h>
         <button id="playButton">Play</button>
         <button id="shopButton">Shop</button>
+        <button id="skillsButton">Skills</button>
 
     </div>
 
@@ -22,6 +23,7 @@
     <div id="gameDiv">
 
         <p id="scoreDisplay">Score: null/</p>
+        <p id="coinsDisplay">Coins: null/</p>
         <div id="heartContainer">
             <img src="Images/Heart.png" class="hearts" id="heart1">
             <img src="Images/Heart.png" class="hearts" id="heart2">
@@ -39,6 +41,58 @@
         <button id="gameOverMenuButton">Menu</button>
 
     </div>
+
+
+    <div id="shopDiv">
+
+        <h>Shop</h>
+        <p id="shopCoinsDisplay">Coins: null/</p>
+        <button id="shopMainMenuButton">Menu</button>
+        <span id="shopBack"></span>
+        <span id="shopBorder"></span>
+
+
+        <div id="ShopButtons">
+
+            <div class="itemDiv" id="redArrow">
+                <p>Red Arrow</p>
+                <img src="Images/RedArrow.png">
+                <button>Equip</button>
+                <span class="itemSpan"></span>
+            </div>
+
+            <div class="itemDiv" id="blueArrow">
+                <p>Blue Arrow</p>
+                <img src="Images/BlueArrow.png">
+                <button>5 Coins</button>
+                <span class="itemSpan"></span>
+            </div>
+
+            <div class="itemDiv" id="greenArrow">
+                <p>Green Arrow</p>
+                <img src="Images/GreenArrow.png">
+                <button>5 Coins</button>
+                <span class="itemSpan"></span>
+            </div>
+
+            <div class="itemDiv" id="orangeArrow">
+                <p>Orange Arrow</p>
+                <img src="Images/OrangeArrow.png">
+                <button>5 Coins</button>
+                <span class="itemSpan"></span>
+            </div>
+
+            <div class="itemDiv" id="purpleArrow">
+                <p>Purple Arrow</p>
+                <img src="Images/PurpleArrow.png">
+                <button>5 Coins</button>
+                <span class="itemSpan"></span>
+            </div>
+
+        </div>
+
+    </div>
+
 </body>
 
 <script type="module" src="Scripts/config.js"></script>

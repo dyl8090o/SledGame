@@ -2,18 +2,23 @@ import { config } from "./config.js";
 import { setUpPlayer, movePlayer, rockHit } from "./PlayerHandler.js";
 import { moveObstacles } from "./ObstacleHandler.js";
 import { heartUpdate } from "./UIHandler.js";
-export { gameStateChange, scoreChange, obstacleHit }
+export { gameStateChange, scoreChange, coinsChange, obstacleHit }
 
 let mainMenuDiv = document.getElementById("mainMenuDiv");
 let gameDiv = document.getElementById("gameDiv");
-let scoreDisplay = document.getElementById("scoreDisplay");
-let scoreDisplay2 = document.getElementById("gameOverScoreDisplay");
+let gameOverDiv = document.getElementById("gameOverDiv");
+let shopDiv = document.getElementById("shopDiv");
 gameStateChange("mainMenu");
 
 let canvas = document.getElementById("gameCanvas");
 let context = canvas.getContext("2d")
 
 let lastTimestamp = 0;
+
+let scoreDisplay = document.getElementById("scoreDisplay");
+let scoreDisplay2 = document.getElementById("gameOverScoreDisplay");
+let coinsDisplay = document.getElementById("coinsDisplay");
+let coinsDisplay2 = document.getElementById("shopCoinsDisplay");
 
 setInterval (() => {
         if (config.gameState === "game"){
@@ -25,13 +30,14 @@ function gameStateChange(newState){
     mainMenuDiv.style.display = "none";
     gameDiv.style.display = "none";
     gameOverDiv.style.display = "none";
+    shopDiv.style.display = "none";
 
     let oldState = config.gameState;
     config.gameState = newState;
     if (newState === "mainMenu"){
         mainMenuDiv.style.display = "block";
-    } else if (newState === "shopMenu"){
-        
+    } else if (newState === "shop"){
+        shopDiv.style.display = "block";
     } else if (newState === "game"){
         lastTimestamp = 0;
         gameDiv.style.display = "block";
@@ -71,6 +77,19 @@ function scoreChange(changeBy, newScore){
     scoreDisplay2.textContent = ("Score: " + config.score);
     // console.log("Old score: " + oldScore + " | New score: " + config.score);
 }
+
+function coinsChange(changeBy, newCoins){
+    let oldCoins = config.score;
+    if (newCoins != null){
+        config.coins = newCoins
+    } else {
+        config.coins = config.coins + changeBy;
+    }
+    coinsDisplay.textContent = ("Coins: " + config.coins);
+    coinsDisplay2.textContent = ("Coins: " + config.coins);
+    // console.log("Old coins: " + oldCoins + " | New coins: " + config.coins);
+}
+coinsChange(null, 0)
 
 function obstacleHit(type, angle) {
     

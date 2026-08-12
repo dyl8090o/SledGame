@@ -1,5 +1,5 @@
 import { config } from "./config.js";
-import { obstacleHit } from "./main.js"
+import { obstacleHit, coinsChange } from "./main.js"
 export { moveObstacles }
 
 let canvas = document.getElementById("gameCanvas");
@@ -7,6 +7,8 @@ let context = canvas.getContext("2d")
 
 const rockImage = new Image();
 rockImage.src = "Images/Rock.png";
+const coinImage = new Image();
+coinImage.src = "Images/Coin.png";
 
 let obstacles = []
 
@@ -17,21 +19,33 @@ setInterval (() => {
 }, (Math.floor(Math.random()) * (config.obstacleMaxSpawn - config.obstacleMinSpawn + 1)) + config.obstacleMinSpawn);
 
 function spawnObstacle(){
-    obstacles.push({ x: Math.floor(Math.random() * (655 - 44 + 1) + 44), y: -100, type: "rock"});
+    let randomNumber = Math.floor(Math.random() * (16 - 1 + 1)) + 1
+    console.log("Random Obstacle: " + randomNumber);
+
+    if (1 <= randomNumber < 14) obstacles.push({ x: Math.floor(Math.random() * (655 - 44 + 1) + 44), y: -100, clear: false, type: "rock"});
+    if (15 <= randomNumber) obstacles.push({ x: Math.floor(Math.random() * (655 - 44 + 1) + 44), y: -100, clear: false, type: "coin" })
 }
 
 function moveObstacles(deltaTime){
 
     for(let i = 0; i < obstacles.length; i++){
         obstacles[i].y = obstacles[i].y - (config.speed * deltaTime);
-        context.drawImage(rockImage, obstacles[i].x, obstacles[i].y, config.rockWidth, config.rockHeight);
+        if(obstacles[i].type === "rock") context.drawImage(rockImage, obstacles[i].x, obstacles[i].y, config.rockWidth, config.rockHeight);
+        if(obstacles[i].type === "coin") context.drawImage(coinImage, obstacles[i].x, obstacles[i].y, config.coinWidth, config.coinHeight);
 
-        if(Math.sqrt((obstacles[i].x + config.rockWidth/2 - config.playerX)**2 + (obstacles[i].y + config.rockHeight/2 - config.playerY)**2) < config.rockWidth/2 + config.playerWidth/2){
+        if(obstacles[i].type === "rock" && Math.sqrt((obstacles[i].x + config.rockWidth/2 - config.playerX)**2 + (obstacles[i].y + config.rockHeight/2 - config.playerY)**2) < config.rockWidth/2 + config.playerWidth/2){
             console.log("Hit a rock!")
             let angle = Math.atan2((config.playerY - obstacles[i].y), (config.playerX - obstacles[i].x));
             obstacleHit(obstacles[i].type, angle)
         }
-        // console.log(obstacles[i].y)
+        // console.log(obstacles[i].y + " | " + config.speed + " | " + obstacles.length)
+
+        if(obstacles[i].type === "coin" && Math.sqrt((obstacles[i].x + config.coinWidth/2 - config.playerX)**2 + (obstacles[i].y + config.coinHeight/2 - config.playerY)**2) < config.coinWidth/2 + config.playerWidth/2){
+            console.log("Hit a coin!");
+            coinsChange(1, null);
+            obstacles[i].clear = true;
+        }
     }
     obstacles = obstacles.filter(function(obstacle){return obstacle.y < canvas.height});
+    obstacles = obstacles.filter(function(obstacle){return obstacle.clear === false});
 }

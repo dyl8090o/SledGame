@@ -3,6 +3,9 @@ export { config }
 const config = {
     gameState: null,
     score: null,
+    coins: null,
+
+    usedSled: "Images/RedArrow.png",
 
     playerX: null,
     playerY: null,
@@ -19,4 +22,6 @@ const config = {
     obstacleMaxSpawn: 1750,
     rockWidth: 80,
     rockHeight: 80,
+    coinWidth: 40,
+    coinHeight: 50,
 }

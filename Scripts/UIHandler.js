@@ -12,6 +12,16 @@ menuButton.addEventListener( "click", function() {
     gameStateChange("mainMenu");
 });
 
+let shopButton = document.getElementById("shopButton")
+shopButton.addEventListener( "click", function() {
+    gameStateChange("shop");
+});
+
+let shopMainMenuButton = document.getElementById("shopMainMenuButton")
+shopMainMenuButton.addEventListener( "click", function() {
+    gameStateChange("mainMenu");
+});
+
 function heartUpdate(setHearts, changeBy){
     let heart1 = document.getElementById("heart1");
     let heart2 = document.getElementById("heart2")

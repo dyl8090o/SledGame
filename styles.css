@@ -52,6 +52,11 @@ body {
 
 #mainMenuDiv #shopButton{
     top: 40%;
+    text-decoration-thickness: 2px;
+}
+
+#mainMenuDiv #skillsButton{
+    top: 50%;
     text-decoration: line-through;
     text-decoration-thickness: 2px;
 }
@@ -79,6 +84,17 @@ body {
     position: fixed;
     transform: translate(-50%, -50%);
     top: 5%;
+    left: 10%;
+}
+
+#gameDiv #coinsDisplay {
+    color: black;
+    font-size: 48px;
+    font-weight: 350;
+
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top: 12%;
     left: 10%;
 }
 
@@ -170,4 +186,203 @@ body {
 
 /* #endregion */
 
+/* #region shopDiv */
 
+#shopDiv h {
+
+    color: black;
+    font-size: 64px;
+    font-weight: 700;
+
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top: 12%;
+    left: 50%;
+
+}
+
+#shopDiv #shopBack {
+    background-color: rgb(130, 158, 194);
+    width: 80%;
+    height: 90%;
+
+    border-radius: 20%;
+    corner-shape: squircle;
+    border-width: 8px;
+
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    z-index: -1;
+}
+
+#shopDiv #shopBorder {
+    background-color: rgb(81, 102, 128);
+    width: 82%;
+    height: 93.5%;
+
+    border-radius: 20%;
+    corner-shape: squircle;
+    border-width: 8px;
+
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    z-index: -2;
+}
+
+#shopDiv #shopMainMenuButton {
+    color: black;
+    background-color: rgb(158, 186, 238);
+    border-color: rgb(27, 53, 105);
+    font-size: 32px;
+    font-weight: 300;
+    transition: .2s;
+
+    border-radius: 50%;
+    corner-shape: squircle;
+    border-width: 3px;
+
+    width: 10%;
+    padding-top: 5px;
+    padding-bottom: 5px;;
+
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top: 12%;
+    left: 20%;
+    z-index: 1;
+}
+
+#shopDiv #shopMainMenuButton:hover{
+    transform: scale(1.1) translate(-45%, -45%);
+    background-color: rgb(130, 164, 221);
+    border-color: rgb(13, 32, 70);
+}
+
+#shopDiv #shopCoinsDisplay {
+    color: black;
+    font-size: 48px;
+    font-weight: 350;
+
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top: 12%;
+    left: 80%;
+}
+
+#shopDiv .itemDiv {
+    background-color: rgb(21, 69, 133);
+    width: 210px;
+    height: 210px;
+
+    border-radius: 50%;
+    corner-shape: squircle;
+    border-width: 8px;
+}
+
+#shopDiv .itemSpan {
+    background-color: rgb(71, 115, 165);
+    width: 200px;
+    height: 200px;
+
+    border-radius: 50%;
+    corner-shape: squircle;
+    border-width: 8px;
+
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    z-index: -1;
+}
+
+#shopDiv img {
+    width: 80px;
+    height: 80px;
+
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top: 45%;
+    left: 50%;
+}
+
+#shopDiv p {
+    color: black;
+    font-size: 24px;
+    font-weight: 450;
+    white-space: nowrap;
+
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top: 13%;
+    left: 50%;
+}
+
+#shopDiv button {
+    color: black;
+    background-color: rgb(158, 186, 238);
+    border-color: rgb(27, 53, 105);
+    font-size: 20px;
+    font-weight: 350;
+    transition: .2s;
+
+    border-radius: 50%;
+    corner-shape: squircle;
+    border-width: 3px;
+
+    width: 80%;
+    padding-top: 0px;
+    padding-bottom: 5px;
+
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top: 80%;
+    left: 50%;
+}
+
+#shopDiv button:hover{
+    transform: scale(1.1) translate(-45%, -45%);
+    background-color: rgb(130, 164, 221);
+    border-color: rgb(13, 32, 70);
+}
+
+
+#shopDiv #redArrow {
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top: 35%;
+    left: 25%;
+}
+
+#shopDiv #greenArrow {
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top: 35%;
+    left: 37.5%;
+}
+
+#shopDiv #blueArrow {
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top: 35%;
+    left: 50%;
+}
+
+#shopDiv #orangeArrow {
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top: 35%;
+    left: 62.5%;
+}
+
+#shopDiv #purpleArrow {
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top: 35%;
+    left: 75%;
+}
+
+/* #endregion */

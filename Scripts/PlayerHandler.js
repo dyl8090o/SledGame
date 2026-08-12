@@ -12,11 +12,12 @@ let rockHitYModifier = 0;
 
 
 const sledImage = new Image();
-sledImage.src = "Images/Sled.png";
+sledImage.src = "Images/RedArrow.png";
 
 function setUpPlayer(){
 
     if (config.gameState === "game"){
+        sledImage.src = config.usedSled;
 
         config.speed = config.baseSpeed;
         config.iFrames = 0;
