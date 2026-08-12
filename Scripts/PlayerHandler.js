@@ -17,6 +17,12 @@ sledImage.src = "Images/Sled.png";
 function setUpPlayer(){
 
     if (config.gameState === "game"){
+
+        config.speed = config.baseSpeed;
+        config.iFrames = 0;
+        rockHitXModifier = 0;
+        rockHitYModifier = 0;
+
         config.playerX = 310;
         config.playerY = 760;
         config.playerRotate = 0;
@@ -68,8 +74,6 @@ function movePlayer(deltaTime) {
 }
 
 function rockHit(angle){
-
-    config.iFrames = 1;
 
     rockHitModifier = 2;
     rockHitXModifier = Math.cos(angle);

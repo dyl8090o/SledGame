@@ -115,3 +115,59 @@ body {
 }
 
 /* #endregion */
+
+/* #region gameOverDiv */
+
+#gameOverDiv h {
+    color: black;
+    font-size: 64px;
+    font-weight: 700;
+
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top: 15%;
+    left: 50%;
+}
+
+#gameOverDiv #gameOverScoreDisplay {
+    color: black;
+    font-size: 48px;
+    font-weight: 350;
+
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top: 25%;
+    left: 50%;
+}
+
+#gameOverDiv button {
+    color: black;
+    background-color: rgb(158, 186, 238);
+    border-color: rgb(27, 53, 105);
+    font-size: 32px;
+    font-weight: 300;
+    transition: .2s;
+
+    border-radius: 50%;
+    corner-shape: squircle;
+    border-width: 3px;
+
+    width: 10%;
+    padding-top: 5px;
+    padding-bottom: 5px;;
+
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top: 40%;
+    left: 50%;
+}
+
+#gameOverDiv button:hover{
+    transform: scale(1.1) translate(-45%, -45%);
+    background-color: rgb(130, 164, 221);
+    border-color: rgb(13, 32, 70);
+}
+
+/* #endregion */
+
+

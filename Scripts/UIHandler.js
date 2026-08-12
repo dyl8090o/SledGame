@@ -7,6 +7,11 @@ playButton.addEventListener( "click", function() {
     gameStateChange("game");
 });
 
+let menuButton = document.getElementById("gameOverMenuButton")
+menuButton.addEventListener( "click", function() {
+    gameStateChange("mainMenu");
+});
+
 function heartUpdate(setHearts, changeBy){
     let heart1 = document.getElementById("heart1");
     let heart2 = document.getElementById("heart2")
