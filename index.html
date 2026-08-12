@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="styles.css">
+    <title>Sled Game</title>
+</head>
+
+<body>
+
+    <div id="mainMenuDiv">
+
+        <h>Sled Game</h>
+        <button id="playButton">Play</button>
+        <button id="shopButton">Shop</button>
+
+    </div>
+
+
+    <div id="gameDiv">
+        <p id="scoreDisplay">Score: null/</p>
+        <div id="heartContainer">
+            <img src="Images/Heart.png" class="hearts" id="heart1">
+            <img src="Images/Heart.png" class="hearts" id="heart2">
+        </div>
+        <span id="questList">Active Quests:</span>
+        <canvas id="gameCanvas" width="700" height="900"></canvas>
+    </div>
+</body>
+
+<script type="module" src="scripts/config.js"></script>
+<script type="module" src="scripts/main.js"></script>
+<script type="module" src="scripts/ObstacleHandler.js"></script>
+<script type="module" src="scripts/PlayerHandler.js"></script>
+<script type="module" src="scripts/QuestHandler.js"></script>
+<script type="module" src="scripts/shopHandler.js"></script>
+<script type="module" src="scripts/UIHandler.js"></script>
+
+</html>
