@@ -5,7 +5,7 @@ const config = {
     score: null,
     coins: null,
 
-    usedSled: "Images/RedArrow.png",
+    usedSled: null,
 
     playerX: null,
     playerY: null,

@@ -37,19 +37,22 @@ function movePlayer(deltaTime) {
     if (config.iFrames > 0) config.iFrames = config.iFrames - deltaTime;
 
     // Rotate Sled
-    if (keys.left === true && config.playerRotate > (-60 * (Math.PI / 180))) config.playerRotate = config.playerRotate - ((100 * (Math.PI / 180)) * deltaTime);
-    if (keys.right === true && config.playerRotate < (60 * (Math.PI / 180))) config.playerRotate = config.playerRotate + ((100 * (Math.PI / 180)) * deltaTime);
-
+    if (keys.left === true && config.playerRotate > (-60 * (Math.PI / 180)) && config.playerX > 44) config.playerRotate = config.playerRotate - ((100 * (Math.PI / 180)) * deltaTime);
+    if (keys.right === true && config.playerRotate < (60 * (Math.PI / 180)) && config.playerX < 657) config.playerRotate = config.playerRotate + ((100 * (Math.PI / 180)) * deltaTime);
+    // Rotate Sled If Offscreen
+    if (config.playerRotate > (-60 * (Math.PI / 180)) && config.playerX > 657) config.playerRotate = config.playerRotate - ((100 * (Math.PI / 180)) * deltaTime);
+    if (config.playerRotate < (60 * (Math.PI / 180)) && config.playerX < 42) config.playerRotate = config.playerRotate + ((100 * (Math.PI / 180)) * deltaTime);
     // Move Sled Based On Rotation
     if (config.playerX > 44 && config.playerRotate < 0 || config.playerX < 655 && config.playerRotate > 0){
         config.playerX = config.playerX + ((125 * Math.sin(config.playerRotate)*1.25) * deltaTime)
-
-        config.speed = config.baseSpeed - (Math.cos(config.playerRotate) * 0.4);
     }
 
     // W/S Changing verticalModifier
     if (keys.up === true && config.playerY > 50 && verticalModifier < 1) verticalModifier = verticalModifier + ((125 * .02) * deltaTime);
     if (keys.down === true && config.playerY < 850 && verticalModifier > -1) verticalModifier = verticalModifier - ((125 * .02) * deltaTime);
+    // Change verticalModifier If Offscreen
+    if (config.playerY < 50 && verticalModifier < 1) verticalModifier = verticalModifier - ((125 * .02) * deltaTime);
+    if (config.playerY > 850 && verticalModifier > -1) verticalModifier = verticalModifier + ((125 * .02) * deltaTime);
     // Move Sled Up & Down
     if (verticalModifier > 0 && config.playerY > 50) config.playerY = config.playerY - ((150 * verticalModifier) * deltaTime);
     if (verticalModifier < 0 && config.playerY < 850) config.playerY = config.playerY - ((150 * verticalModifier) * deltaTime);
@@ -70,6 +73,8 @@ function movePlayer(deltaTime) {
     context.drawImage(sledImage, -config.playerWidth/2, -config.playerHeight/2, config.playerWidth, config.playerHeight)
     context.restore();
 
+    config.speed = config.baseSpeed - (Math.cos(config.playerRotate) * 50);
+
     // console.log("X: " + Math.round(config.playerX, 5) + " Y: " + Math.round(config.playerY) + " Rotate: " + (Math.round(config.playerRotate * 100)/100) + " Vertical Modifier: " + (Math.round(config.verticalModifier * 10000)/10000));
     // console.log(config.iFrames);
 }
@@ -83,19 +88,24 @@ function rockHit(angle){
 
 }
 
+
+let W = document.getElementById("W");
+let S = document.getElementById("S");
+let A = document.getElementById("A");
+let D = document.getElementById("D");
 document.addEventListener("DOMContentLoaded", function() {
 
     window.addEventListener("keydown", function(event){
-    if (event.key.toLowerCase() === "a") keys.left = true;
-    if (event.key.toLowerCase() === "d") keys.right = true;
-    if (event.key.toLowerCase() === "w") keys.up = true;
-    if (event.key.toLowerCase() === "s") keys.down = true;
+    if (event.key.toLowerCase() === "a"){ keys.left = true; A.classList.add("pressed");}
+    if (event.key.toLowerCase() === "d") {keys.right = true; D.classList.add("pressed");}
+    if (event.key.toLowerCase() === "w") {keys.up = true; W.classList.add("pressed");}
+    if (event.key.toLowerCase() === "s") {keys.down = true; S.classList.add("pressed");}
     })
     window.addEventListener("keyup", function(event){
-    if (event.key.toLowerCase() === "a") keys.left = false;
-    if (event.key.toLowerCase() === "d") keys.right = false;
-    if (event.key.toLowerCase() === "w") keys.up = false;
-    if (event.key.toLowerCase() === "s") keys.down = false;
+    if (event.key.toLowerCase() === "a") {keys.left = false; A.classList.remove("pressed");}
+    if (event.key.toLowerCase() === "d") {keys.right = false; D.classList.remove("pressed");}
+    if (event.key.toLowerCase() === "w") {keys.up = false; W.classList.remove("pressed");}
+    if (event.key.toLowerCase() === "s") {keys.down = false; S.classList.remove("pressed");}
     })
 
 })

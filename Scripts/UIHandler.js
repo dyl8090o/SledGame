@@ -1,5 +1,5 @@
 import { config } from "./config.js";
-import { gameStateChange, scoreChange } from "./main.js";
+import { coinsChange, gameStateChange, scoreChange } from "./main.js";
 export { heartUpdate }
 
 let playButton = document.getElementById("playButton")
@@ -21,6 +21,11 @@ let shopMainMenuButton = document.getElementById("shopMainMenuButton")
 shopMainMenuButton.addEventListener( "click", function() {
     gameStateChange("mainMenu");
 });
+
+//let freeCoin = document.getElementById("freeCoin")
+//freeCoin.addEventListener( "click", function() {
+//    coinsChange(1, null)
+//});
 
 function heartUpdate(setHearts, changeBy){
     let heart1 = document.getElementById("heart1");
