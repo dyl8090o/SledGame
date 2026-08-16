@@ -16,14 +16,21 @@ setInterval (() => {
     if (config.gameState === "game"){
         spawnObstacle();
     }
-}, (Math.floor(Math.random()) * (config.obstacleMaxSpawn - config.obstacleMinSpawn + 1)) + config.obstacleMinSpawn);
+}, (Math.floor(Math.random()) * ((config.obstacleMaxSpawn+config.baseSpeed+200) - (config.obstacleMinSpawn+config.baseSpeed+200) + 1)) + (config.obstacleMinSpawn+config.baseSpeed+200));
 
 function spawnObstacle(){
-    let randomNumber = Math.floor(Math.random() * (16 - 1 + 1)) + 1
+    let randomNumber = Math.floor(Math.random() * (16 - 1 + 1)) + 1;
     console.log("Random Obstacle: " + randomNumber);
 
-    if (1 <= randomNumber < 14) obstacles.push({ x: Math.floor(Math.random() * (655 - 44 + 1) + 44), y: -100, clear: false, type: "rock"});
-    if (15 <= randomNumber) obstacles.push({ x: Math.floor(Math.random() * (655 - 44 + 1) + 44), y: -100, clear: false, type: "coin" })
+    if (1 <= randomNumber && randomNumber <= 14) obstacles.push({ x: Math.floor(Math.random() * (655 - 44 + 1) + 44), y: -100, clear: false, type: "rock"});
+    if (15 <= randomNumber && randomNumber <= 16) obstacles.push({ x: Math.floor(Math.random() * (655 - 44 + 1) + 44), y: -100, clear: false, type: "coin" });
+
+    let randomNumber2 = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
+    if (randomNumber2 === 1)[
+        setTimeout(() =>{
+            spawnObstacle();
+        }, (Math.floor(Math.random()) * ((750+config.baseSpeed+200) - (250+config.baseSpeed+200) + 1)) + (250+config.baseSpeed+200)
+    )]
 }
 
 function moveObstacles(deltaTime){

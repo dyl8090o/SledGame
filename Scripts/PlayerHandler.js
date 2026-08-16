@@ -73,8 +73,12 @@ function movePlayer(deltaTime) {
     context.drawImage(sledImage, -config.playerWidth/2, -config.playerHeight/2, config.playerWidth, config.playerHeight)
     context.restore();
 
+    let speedDisplay = document.getElementById("speedDisplay");
+    if (!Number.isNaN(deltaTime)) config.baseSpeed -= (deltaTime);
     config.speed = config.baseSpeed - (Math.cos(config.playerRotate) * 50);
+    speedDisplay.textContent = ("Speed: " + (Math.abs(Math.round((config.baseSpeed)))));
 
+    console.log("Speed: " + config.baseSpeed);
     // console.log("X: " + Math.round(config.playerX, 5) + " Y: " + Math.round(config.playerY) + " Rotate: " + (Math.round(config.playerRotate * 100)/100) + " Vertical Modifier: " + (Math.round(config.verticalModifier * 10000)/10000));
     // console.log(config.iFrames);
 }

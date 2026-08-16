@@ -41,6 +41,7 @@ function gameStateChange(newState){
     } else if (newState === "game"){
         lastTimestamp = 0;
         gameDiv.style.display = "block";
+        config.baseSpeed = -200;
         scoreChange(null, 0);
         setUpPlayer();
         heartUpdate(null, 2)

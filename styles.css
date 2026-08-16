@@ -98,6 +98,17 @@ body {
     left: 10%;
 }
 
+#gameDiv #speedDisplay {
+    color: black;
+    font-size: 48px;
+    font-weight: 350;
+
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top: 19%;
+    left: 10%;
+}
+
 #gameDiv #heartContainer {
     position: fixed;
     transform: translate(-50%, -50%);
