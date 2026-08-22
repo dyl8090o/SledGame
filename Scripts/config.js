@@ -4,6 +4,10 @@ const config = {
     gameState: null,
     score: null,
     coins: null,
+    designWidth: 1918,
+    designHeight: 993,
+
+    showHitboxes: false,
 
     usedSled: null,
 
@@ -24,4 +28,8 @@ const config = {
     rockHeight: 80,
     coinWidth: 40,
     coinHeight: 50,
+    coneStickWidth: 12,
+    coneStickHeight: 19,
+    coneWidth: 123,
+    coneHeight: 51,
 }

@@ -7,9 +7,17 @@
 
 body {
     background-color: #e0e0e0;
-    color: #e0e0e0;
     min-height: 100vh;
-    padding: 40px;
+    overflow: hidden;
+}
+
+#scaleDiv {
+    position: absolute;
+    transform-origin: top left;
+    width: 1918px;
+    height: 993px;
+    background-color: #e0e0e0;
+    color: #e0e0e0;
 }
 
 /* #region mainMenuDiv */
@@ -19,7 +27,7 @@ body {
     font-size: 64px;
     font-weight: 700;
 
-    position: fixed;
+    position: absolute;
     transform: translate(-50%, -50%);
     top: 15%;
     left: 50%;
@@ -41,7 +49,7 @@ body {
     padding-top: 5px;
     padding-bottom: 5px;;
 
-    position: fixed;
+    position: absolute;
     transform: translate(-50%, -50%);
     left: 50%;
 }
@@ -81,7 +89,7 @@ body {
     font-size: 48px;
     font-weight: 350;
 
-    position: fixed;
+    position: absolute;
     transform: translate(-50%, -50%);
     top: 5%;
     left: 10%;
@@ -92,7 +100,7 @@ body {
     font-size: 48px;
     font-weight: 350;
 
-    position: fixed;
+    position: absolute;
     transform: translate(-50%, -50%);
     top: 12%;
     left: 10%;
@@ -103,14 +111,14 @@ body {
     font-size: 48px;
     font-weight: 350;
 
-    position: fixed;
+    position: absolute;
     transform: translate(-50%, -50%);
     top: 19%;
     left: 10%;
 }
 
 #gameDiv #heartContainer {
-    position: fixed;
+    position: absolute;
     transform: translate(-50%, -50%);
     top: 5%;
     left: 22%;
@@ -125,7 +133,7 @@ body {
     font-size: 36px;
     font-weight: 350;
 
-    position: fixed;
+    position: absolute;
     transform: translate(-0%, -50%);
     top: 5%;
     left: 80%;
@@ -133,7 +141,7 @@ body {
 
 #gameDiv #gameCanvas {
     display: flex;
-    position: fixed;
+    position: absolute;
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
@@ -151,7 +159,7 @@ body {
     corner-shape: squircle;
     border-width: 8px;
 
-    position: fixed;
+    position: absolute;
     transform: translate(-50%, -50%);
     top: 75%;
     left: 16%;
@@ -187,7 +195,7 @@ body {
     font-size: 64px;
     font-weight: 700;
 
-    position: fixed;
+    position: absolute;
     transform: translate(-50%, -50%);
     top: 15%;
     left: 50%;
@@ -198,7 +206,7 @@ body {
     font-size: 48px;
     font-weight: 350;
 
-    position: fixed;
+    position: absolute;
     transform: translate(-50%, -50%);
     top: 25%;
     left: 50%;
@@ -220,7 +228,7 @@ body {
     padding-top: 5px;
     padding-bottom: 5px;;
 
-    position: fixed;
+    position: absolute;
     transform: translate(-50%, -50%);
     top: 40%;
     left: 50%;
@@ -242,7 +250,7 @@ body {
     font-size: 64px;
     font-weight: 700;
 
-    position: fixed;
+    position: absolute;
     transform: translate(-50%, -50%);
     top: 12%;
     left: 50%;
@@ -258,7 +266,7 @@ body {
     corner-shape: squircle;
     border-width: 8px;
 
-    position: fixed;
+    position: absolute;
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
@@ -274,7 +282,7 @@ body {
     corner-shape: squircle;
     border-width: 8px;
 
-    position: fixed;
+    position: absolute;
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
@@ -297,7 +305,7 @@ body {
     padding-top: 5px;
     padding-bottom: 5px;;
 
-    position: fixed;
+    position: absolute;
     transform: translate(-50%, -50%);
     top: 12%;
     left: 20%;
@@ -315,7 +323,7 @@ body {
     font-size: 48px;
     font-weight: 350;
 
-    position: fixed;
+    position: absolute;
     transform: translate(-50%, -50%);
     top: 12%;
     left: 80%;
@@ -340,7 +348,7 @@ body {
     corner-shape: squircle;
     border-width: 8px;
 
-    position: fixed;
+    position: absolute;
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
@@ -351,7 +359,7 @@ body {
     width: 80px;
     height: 80px;
 
-    position: fixed;
+    position: absolute;
     transform: translate(-50%, -50%);
     top: 45%;
     left: 50%;
@@ -363,7 +371,7 @@ body {
     font-weight: 450;
     white-space: nowrap;
 
-    position: fixed;
+    position: absolute;
     transform: translate(-50%, -50%);
     top: 13%;
     left: 50%;
@@ -385,7 +393,7 @@ body {
     padding-top: 0px;
     padding-bottom: 5px;
 
-    position: fixed;
+    position: absolute;
     transform: translate(-50%, -50%);
     top: 80%;
     left: 50%;
@@ -406,35 +414,35 @@ body {
 
 
 #shopDiv #redArrow {
-    position: fixed;
+    position: absolute;
     transform: translate(-50%, -50%);
     top: 35%;
     left: 25%;
 }
 
 #shopDiv #greenArrow {
-    position: fixed;
+    position: absolute;
     transform: translate(-50%, -50%);
     top: 35%;
     left: 37.5%;
 }
 
 #shopDiv #blueArrow {
-    position: fixed;
+    position: absolute;
     transform: translate(-50%, -50%);
     top: 35%;
     left: 50%;
 }
 
 #shopDiv #orangeArrow {
-    position: fixed;
+    position: absolute;
     transform: translate(-50%, -50%);
     top: 35%;
     left: 62.5%;
 }
 
 #shopDiv #purpleArrow {
-    position: fixed;
+    position: absolute;
     transform: translate(-50%, -50%);
     top: 35%;
     left: 75%;

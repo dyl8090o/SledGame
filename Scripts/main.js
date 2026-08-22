@@ -20,6 +20,18 @@ let scoreDisplay2 = document.getElementById("gameOverScoreDisplay");
 let coinsDisplay = document.getElementById("coinsDisplay");
 let coinsDisplay2 = document.getElementById("shopCoinsDisplay");
 
+resizeScreen();
+function resizeScreen() {
+    let scaleDiv = document.getElementById("scaleDiv");
+    let scaleX = window.innerWidth / config.designWidth;
+    let scaleY = window.innerHeight / config.designHeight;
+    let scale = Math.min(scaleX, scaleY);
+    scaleDiv.style.transform = `scale(${scale})`;
+    console.log(`Width: ${window.innerWidth} | Height: ${window.innerHeight} | scaleX: ${scaleX} | scaleY ${scaleY}`)
+    scaleDiv.style.left = `${(window.innerWidth - (config.designWidth * scale)) / 2}px`;
+    scaleDiv.style.top = `${(window.innerHeight - (config.designHeight * scale)) / 2}px`;
+}
+
 setInterval (() => {
         if (config.gameState === "game"){
             scoreChange(1, null);
@@ -94,7 +106,7 @@ coinsChange(null, 0)
 
 function obstacleHit(type, angle) {
     
-    if (type === "rock"){
+    if (type === "rock" || type === "cone"){
         rockHit(angle);
         if (config.iFrames <= 0){
             heartUpdate(null, -1);
@@ -107,3 +119,11 @@ function obstacleHit(type, angle) {
     }
 
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+
+    window.addEventListener("resize", function(){
+        resizeScreen();
+    })
+
+})

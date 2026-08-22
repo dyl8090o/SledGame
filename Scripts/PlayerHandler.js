@@ -78,7 +78,16 @@ function movePlayer(deltaTime) {
     config.speed = config.baseSpeed - (Math.cos(config.playerRotate) * 50);
     speedDisplay.textContent = ("Speed: " + (Math.abs(Math.round((config.baseSpeed)))));
 
-    console.log("Speed: " + config.baseSpeed);
+    // Draw Hitboxes
+    if (config.showHitboxes === true){
+        context.beginPath();
+        context.arc(config.playerX, config.playerY, config.playerWidth/2, 0, Math.PI * 2)
+        context.strokeStyle = "lime";
+        context.lineWidth = 2;
+        context.stroke();
+    }
+
+    // console.log("Speed: " + config.baseSpeed);
     // console.log("X: " + Math.round(config.playerX, 5) + " Y: " + Math.round(config.playerY) + " Rotate: " + (Math.round(config.playerRotate * 100)/100) + " Vertical Modifier: " + (Math.round(config.verticalModifier * 10000)/10000));
     // console.log(config.iFrames);
 }
@@ -100,16 +109,16 @@ let D = document.getElementById("D");
 document.addEventListener("DOMContentLoaded", function() {
 
     window.addEventListener("keydown", function(event){
-    if (event.key.toLowerCase() === "a"){ keys.left = true; A.classList.add("pressed");}
-    if (event.key.toLowerCase() === "d") {keys.right = true; D.classList.add("pressed");}
-    if (event.key.toLowerCase() === "w") {keys.up = true; W.classList.add("pressed");}
-    if (event.key.toLowerCase() === "s") {keys.down = true; S.classList.add("pressed");}
+    if (event.key.toLowerCase() === "a" || event.key === "ArrowLeft"){ keys.left = true; A.classList.add("pressed");}
+    if (event.key.toLowerCase() === "d" || event.key === "ArrowRight") {keys.right = true; D.classList.add("pressed");}
+    if (event.key.toLowerCase() === "w" || event.key === "ArrowUp") {keys.up = true; W.classList.add("pressed");}
+    if (event.key.toLowerCase() === "s" || event.key === "ArrowDown") {keys.down = true; S.classList.add("pressed");}
     })
     window.addEventListener("keyup", function(event){
-    if (event.key.toLowerCase() === "a") {keys.left = false; A.classList.remove("pressed");}
-    if (event.key.toLowerCase() === "d") {keys.right = false; D.classList.remove("pressed");}
-    if (event.key.toLowerCase() === "w") {keys.up = false; W.classList.remove("pressed");}
-    if (event.key.toLowerCase() === "s") {keys.down = false; S.classList.remove("pressed");}
+    if (event.key.toLowerCase() === "a" || event.key === "ArrowLeft") {keys.left = false; A.classList.remove("pressed");}
+    if (event.key.toLowerCase() === "d" || event.key === "ArrowRight") {keys.right = false; D.classList.remove("pressed");}
+    if (event.key.toLowerCase() === "w" || event.key === "ArrowUp") {keys.up = false; W.classList.remove("pressed");}
+    if (event.key.toLowerCase() === "s" || event.key === "ArrowDown") {keys.down = false; S.classList.remove("pressed");}
     })
 
 })
