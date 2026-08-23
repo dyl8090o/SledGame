@@ -113,6 +113,12 @@ document.addEventListener("DOMContentLoaded", function() {
     if (event.key.toLowerCase() === "d" || event.key === "ArrowRight") {keys.right = true; D.classList.add("pressed");}
     if (event.key.toLowerCase() === "w" || event.key === "ArrowUp") {keys.up = true; W.classList.add("pressed");}
     if (event.key.toLowerCase() === "s" || event.key === "ArrowDown") {keys.down = true; S.classList.add("pressed");}
+
+    if (event.key.toLowerCase() === "h") {
+        if (config.showHitboxes === false) config.showHitboxes = true;
+        else config.showHitboxes = false;
+    }
+
     })
     window.addEventListener("keyup", function(event){
     if (event.key.toLowerCase() === "a" || event.key === "ArrowLeft") {keys.left = false; A.classList.remove("pressed");}

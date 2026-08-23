@@ -17,7 +17,7 @@ coneImage.src = "Images/windCone.png";
 let obstacles = []
 
 setInterval (() => {
-    if (config.gameState === "game"){
+    if (config.gameState === "game" || config.gameState === "mainMenu"){
         spawnObstacle();
     }
 }, (Math.floor(Math.random()) * ((config.obstacleMaxSpawn+config.baseSpeed+200) - (config.obstacleMinSpawn+config.baseSpeed+200) + 1)) + (config.obstacleMinSpawn+config.baseSpeed+200));
@@ -26,10 +26,16 @@ function spawnObstacle(){
     let randomNumber = Math.floor(Math.random() * (100 - 1 + 1)) + 1;
     console.log("Random Obstacle: " + randomNumber);
 
+    let sledImage = new Image();
+            let randomSled = Math.floor(Math.random(1 - 1 + 1) + 1);
+            if(randomSled === 1){
+                sledImage.src = "Images/redObstacleSled.png";
+            }
+
     if (1 <= randomNumber && randomNumber <= 69) obstacles.push({ x: Math.floor(Math.random() * (655 - 44 + 1) + 44), y: -100, clear: false, type: "rock"});
     if (79 <= randomNumber && randomNumber <= 84) obstacles.push({ x: Math.floor(Math.random() * (655 - 44 + 1) + 44), y: -100, clear: false, type: "coin" });
     if (85 <= randomNumber && randomNumber <= 100) obstacles.push({ x: Math.floor(Math.random() * (655 - 44 + 1) + 44), y: -100, rotateSpeed: Math.floor(Math.random() * (120 - 45 + 1) + 45), angle: Math.floor(Math.random() * (360 - 0 + 1) + 0), clear: false, type: "cone" });
-    if (70 <= randomNumber && randomNumber <= 78) obstacles.push({ x: Math.floor(Math.random() * (655 - 44 + 1) + 44), y: -100, angle: Math.floor(Math.random() * (60 - (-60) + 1) + (-60)), targetAngle: Math.floor(Math.random() * (60 - (-60) + 1) + (-60)), sled: null, clear: false, type: "sled" });
+    if (70 <= randomNumber && randomNumber <= 78) obstacles.push({ x: Math.floor(Math.random() * (655 - 44 + 1) + 44), y: -100, angle: Math.floor(Math.random() * (60 - (-60) + 1) + (-60)), targetAngle: Math.floor(Math.random() * (60 - (-60) + 1) + (-60)), sled: sledImage, clear: false, type: "sled" });
 
     let randomNumber2 = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
     if (randomNumber2 === 1)[
@@ -39,7 +45,6 @@ function spawnObstacle(){
     )]
 }
 
-let targetAngle = 0;
 function moveObstacles(deltaTime){
 
     for(let i = 0; i < obstacles.length; i++){
@@ -56,12 +61,7 @@ function moveObstacles(deltaTime){
             // console.log("Angle: " + obstacles[i].angle);
         }
         if(obstacles[i].type === "sled"){
-
-            let sledImage = new Image();
-            let randomSled = Math.floor(Math.random(1 - 1 + 1) + 1);
-            if(randomSled === 1){
-                sledImage.src = "Images/redObstacleSled.png";
-            }
+            let sledImage = obstacles[i].sled;
 
             context.save();
             context.translate(obstacles[i].x, obstacles[i].y);
@@ -76,7 +76,7 @@ function moveObstacles(deltaTime){
                 else if(obstacles[i].angle < obstacles[i].targetAngle) obstacles[i].angle += (35 * deltaTime); 
             }
 
-            if (obstacles[i].x > 44 && obstacles[i].angle < 0 || obstacles[i].x < 655 && obstacles[i].angle > 0){
+            if (obstacles[i].x > -44 && obstacles[i].angle < 0 || obstacles[i].x < 745 && obstacles[i].angle > 0){
             obstacles[i].x += ((150 * Math.sin(obstacles[i].angle * (Math.PI/180))*1.25) * deltaTime)
     }
             

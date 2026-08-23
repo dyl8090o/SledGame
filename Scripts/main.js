@@ -10,17 +10,19 @@ let gameDiv = document.getElementById("gameDiv");
 let gameOverDiv = document.getElementById("gameOverDiv");
 let shopDiv = document.getElementById("shopDiv");
 let feedbackDiv = document.getElementById("feedbackDiv");
-gameStateChange("mainMenu");
 
 let canvas = document.getElementById("gameCanvas");
 let context = canvas.getContext("2d")
 
-let lastTimestamp = 0;
+let lastGameTimestamp = 0;
+let lastMenuTimestamp = 0;
 
 let scoreDisplay = document.getElementById("scoreDisplay");
 let scoreDisplay2 = document.getElementById("gameOverScoreDisplay");
 let coinsDisplay = document.getElementById("coinsDisplay");
 let coinsDisplay2 = document.getElementById("shopCoinsDisplay");
+
+
 
 resizeScreen();
 function resizeScreen() {
@@ -66,16 +68,23 @@ function gameStateChange(newState){
     gameOverDiv.style.display = "none";
     shopDiv.style.display = "none";
     feedbackDiv.style.display = "none";
+    canvas.style.display = "none";
 
     let oldState = config.gameState;
     config.gameState = newState;
     if (newState === "mainMenu"){
+        lastMenuTimestamp = 0;
+        config.playerX = -1000000000;
+        config.speed = -250;
         mainMenuDiv.style.display = "block";
+        canvas.style.display = "block";
+        requestAnimationFrame(menuAnimationFrame);
     } else if (newState === "shop"){
         shopDiv.style.display = "block";
     } else if (newState === "game"){
-        lastTimestamp = 0;
+        lastGameTimestamp = 0;
         gameDiv.style.display = "block";
+        canvas.style.display = "block";
         config.baseSpeed = -200;
         scoreChange(null, 0);
         setUpPlayer();
@@ -91,8 +100,8 @@ function gameStateChange(newState){
 }
 
 function gameAnimationFrame(timestamp){
-    let deltaTime = (timestamp - lastTimestamp) / 1000;
-    lastTimestamp = timestamp
+    let deltaTime = (timestamp - lastGameTimestamp) / 1000;
+    lastGameTimestamp = timestamp
 
     if(config.gameState === "game"){
         context.clearRect(0, 0, canvas.width, canvas.height);
@@ -100,6 +109,23 @@ function gameAnimationFrame(timestamp){
         movePlayer(deltaTime);
         moveObstacles(deltaTime);
         requestAnimationFrame(gameAnimationFrame);
+    }else {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+    }
+}
+
+function menuAnimationFrame(timestamp){
+
+    console.log(`Base Speed: ${config.baseSpeed} | Speed: ${config.speed}`)
+    if (lastMenuTimestamp === 0){ lastMenuTimestamp = timestamp }
+
+    let deltaTime = (timestamp - lastMenuTimestamp) / 1000;
+    lastMenuTimestamp = timestamp
+
+    if(config.gameState === "mainMenu"){
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        moveObstacles(deltaTime);
+        requestAnimationFrame(menuAnimationFrame);
     }else {
         context.clearRect(0, 0, canvas.width, canvas.height);
     }
@@ -150,5 +176,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     window.addEventListener("resize", function(){resizeScreen();})
     window.addEventListener("orientationchange", function(){setTimeout(resizeScreen, 100);})
+
+    gameStateChange("mainMenu")
 
 })
