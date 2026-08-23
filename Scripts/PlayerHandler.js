@@ -121,4 +121,24 @@ document.addEventListener("DOMContentLoaded", function() {
     if (event.key.toLowerCase() === "s" || event.key === "ArrowDown") {keys.down = false; S.classList.remove("pressed");}
     })
 
+    W.addEventListener("touchstart", function() {keys.up = true; W.classList.add("pressed");})
+    S.addEventListener("touchstart", function() {keys.down = true; S.classList.add("pressed");})
+    A.addEventListener("touchstart", function() {keys.left = true; A.classList.add("pressed");})
+    D.addEventListener("touchstart", function() {keys.right = true; D.classList.add("pressed");})
+
+    W.addEventListener("touchend", function() {keys.up = false; W.classList.remove("pressed");})
+    S.addEventListener("touchend", function() {keys.down = false; S.classList.remove("pressed");})
+    A.addEventListener("touchend", function() {keys.left = false; A.classList.remove("pressed");})
+    D.addEventListener("touchend", function() {keys.right = false; D.classList.remove("pressed");})
+
+    W.addEventListener("mousedown", function() {keys.up = true; W.classList.add("pressed");})
+    S.addEventListener("mousedown", function() {keys.down = true; S.classList.add("pressed");})
+    A.addEventListener("mousedown", function() {keys.left = true; A.classList.add("pressed");})
+    D.addEventListener("mousedown", function() {keys.right = true; D.classList.add("pressed");})
+
+    W.addEventListener("mouseup", function() {keys.up = false; W.classList.remove("pressed");})
+    S.addEventListener("mouseup", function() {keys.down = false; S.classList.remove("pressed");})
+    A.addEventListener("mouseup", function() {keys.left = false; A.classList.remove("pressed");})
+    D.addEventListener("mouseup", function() {keys.right = false; D.classList.remove("pressed");})
+
 })

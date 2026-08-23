@@ -80,6 +80,28 @@ body {
     border-color: rgb(13, 32, 70);
 }
 
+#mainMenuDiv #plannedFeaturesTitle {
+    color: black;
+    font-size: 32px;
+    font-weight: 450;
+
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 4%;
+    left: 8%;
+}
+
+#mainMenuDiv #plannedFeatureList {
+    color: black;
+    font-size: 24px;
+    font-weight: 300;
+
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 15%;
+    left: 8%;
+}
+
 /* #endregion */
 
 /* #region feedbackDiv */
@@ -692,3 +714,55 @@ body {
 
 
 /* #endregion */
+
+
+/* #region Mobile */
+
+@media (pointer: coarse) and (hover: none){
+
+#gameDiv .WASD {
+    background-color: rgb(214, 214, 214);
+    color: black;
+    width: 200px;
+    height: 200px;
+
+    border-radius: 25%;
+    corner-shape: squircle;
+    border-width: 8px;
+
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 75%;
+    left: 50%;
+    z-index: 1;
+
+    text-align:center;
+    font-size: 32px;
+}
+
+#gameDiv #W {
+    top: 60%;
+    left: 85%
+}
+
+#gameDiv #A {
+    top: 70.5%;
+    left: 10%;
+}
+
+#gameDiv #S {
+    top: 81%;
+    left: 85%
+}
+
+#gameDiv #D {
+    top: 70.5%;
+    left: 21%;
+}
+
+#gameDiv .pressed {
+    transform: scale(1.1)translate(-45%, -45%);
+    background-color: rgb(207, 207, 207);
+}
+
+}
