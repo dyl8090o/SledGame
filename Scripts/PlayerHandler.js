@@ -12,7 +12,7 @@ let rockHitYModifier = 0;
 
 
 const sledImage = new Image();
-sledImage.src = "Images/RedArrow.png";
+sledImage.src = "Images/redArrow.png";
 
 function setUpPlayer(){
 
