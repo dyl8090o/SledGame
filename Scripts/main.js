@@ -24,14 +24,34 @@ let coinsDisplay2 = document.getElementById("shopCoinsDisplay");
 
 resizeScreen();
 function resizeScreen() {
+    const isMobile = (window.matchMedia("(pointer: coarse) and (hover: none)").matches && window.innerHeight > window.innerWidth);
     let scaleDiv = document.getElementById("scaleDiv");
     let scaleX = window.innerWidth / config.designWidth;
     let scaleY = window.innerHeight / config.designHeight;
+    if (isMobile){
+        scaleX = window.innerHeight / config.designWidth;
+        scaleY = window.innerWidth / config.designHeight;
+    }
+
     let scale = Math.min(scaleX, scaleY);
-    scaleDiv.style.transform = `scale(${scale})`;
-    console.log(`Width: ${window.innerWidth} | Height: ${window.innerHeight} | scaleX: ${scaleX} | scaleY ${scaleY}`)
-    scaleDiv.style.left = `${(window.innerWidth - (config.designWidth * scale)) / 2}px`;
-    scaleDiv.style.top = `${(window.innerHeight - (config.designHeight * scale)) / 2}px`;
+    console.log(`Mobile: ${isMobile} | Width: ${window.innerWidth} | Height: ${window.innerHeight} | scaleX: ${scaleX} | scaleY ${scaleY}`)
+
+    if (isMobile){
+        scaleDiv.style.transformOrigin = "center center";
+        scaleDiv.style.transform = `translate(-50%, -50%) rotate(90deg) scale(${scale})`;
+    } else{
+        scaleDiv.style.transformOrigin = "top left";
+        scaleDiv.style.transform = `scale(${scale})`;
+    }
+
+    if (isMobile){
+        scaleDiv.style.left = "50%";
+        scaleDiv.style.top = "50%";        
+    } else{
+        scaleDiv.style.left = `${(window.innerWidth - (config.designWidth * scale)) / 2}px`;
+        scaleDiv.style.top = `${(window.innerHeight - (config.designHeight * scale)) / 2}px`;        
+    }
+
 }
 
 setInterval (() => {
@@ -128,8 +148,7 @@ function obstacleHit(type, angle) {
 
 document.addEventListener("DOMContentLoaded", function() {
 
-    window.addEventListener("resize", function(){
-        resizeScreen();
-    })
+    window.addEventListener("resize", function(){resizeScreen();})
+    window.addEventListener("orientationchange", function(){setTimeout(resizeScreen, 100);})
 
 })

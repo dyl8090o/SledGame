@@ -9,6 +9,11 @@ body {
     background-color: #d3d3d3;
     min-height: 100vh;
     overflow: hidden;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 #scaleDiv {
@@ -99,7 +104,7 @@ body {
     position: absolute;
     transform: translate(-50%, -50%);
     top: 15%;
-    left: 8%;
+    left: 9%;
 }
 
 /* #endregion */
