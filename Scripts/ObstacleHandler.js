@@ -26,10 +26,10 @@ function spawnObstacle(){
     let randomNumber = Math.floor(Math.random() * (100 - 1 + 1)) + 1;
     console.log("Random Obstacle: " + randomNumber);
 
-    if (1 <= randomNumber && randomNumber <= 72) obstacles.push({ x: Math.floor(Math.random() * (655 - 44 + 1) + 44), y: -100, clear: false, type: "rock"});
+    if (1 <= randomNumber && randomNumber <= 69) obstacles.push({ x: Math.floor(Math.random() * (655 - 44 + 1) + 44), y: -100, clear: false, type: "rock"});
     if (79 <= randomNumber && randomNumber <= 84) obstacles.push({ x: Math.floor(Math.random() * (655 - 44 + 1) + 44), y: -100, clear: false, type: "coin" });
     if (85 <= randomNumber && randomNumber <= 100) obstacles.push({ x: Math.floor(Math.random() * (655 - 44 + 1) + 44), y: -100, rotateSpeed: Math.floor(Math.random() * (120 - 45 + 1) + 45), angle: Math.floor(Math.random() * (360 - 0 + 1) + 0), clear: false, type: "cone" });
-    if (73 <= randomNumber && randomNumber <= 78) obstacles.push({ x: Math.floor(Math.random() * (655 - 44 + 1) + 44), y: -100, angle: Math.floor(Math.random() * (60 - (-60) + 1) + (-60)), targetAngle: Math.floor(Math.random() * (60 - (-60) + 1) + (-60)), sled: null, clear: false, type: "sled" });
+    if (70 <= randomNumber && randomNumber <= 78) obstacles.push({ x: Math.floor(Math.random() * (655 - 44 + 1) + 44), y: -100, angle: Math.floor(Math.random() * (60 - (-60) + 1) + (-60)), targetAngle: Math.floor(Math.random() * (60 - (-60) + 1) + (-60)), sled: null, clear: false, type: "sled" });
 
     let randomNumber2 = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
     if (randomNumber2 === 1)[
@@ -72,9 +72,13 @@ function moveObstacles(deltaTime){
             if(Math.abs(obstacles[i].angle - obstacles[i].targetAngle) <= 2){
             obstacles[i].targetAngle = Math.floor(Math.random() * (60 - (-60) + 1) + (-60));
             } else {
-                if(obstacles[i].angle > obstacles[i].targetAngle) obstacles[i].angle -= (25 * deltaTime);
-                else if(obstacles[i].angle < obstacles[i].targetAngle) obstacles[i].angle += (25 * deltaTime); 
+                if(obstacles[i].angle > obstacles[i].targetAngle) obstacles[i].angle -= (35 * deltaTime);
+                else if(obstacles[i].angle < obstacles[i].targetAngle) obstacles[i].angle += (35 * deltaTime); 
             }
+
+            if (obstacles[i].x > 44 && obstacles[i].angle < 0 || obstacles[i].x < 655 && obstacles[i].angle > 0){
+            obstacles[i].x += ((150 * Math.sin(obstacles[i].angle * (Math.PI/180))*1.25) * deltaTime)
+    }
             
             // console.log(`Target Angle: ${obstacles[i].targetAngle} | Angle ${obstacles[i].angle}`);
         }
@@ -97,20 +101,33 @@ function moveObstacles(deltaTime){
             obstacleHit(obstacles[i].type, checkCollision(obstacles[i]))
         }
 
+        if(obstacles[i].type === "sled" && checkCollision(obstacles[i]) != false){
+            console.log("Hit a sled!")
+            let angle = Math.atan2((config.playerY - obstacles[i].y), (config.playerX - obstacles[i].x));
+            obstacleHit(obstacles[i].type, angle)
+        }
+
     }
     obstacles = obstacles.filter(function(obstacle){return obstacle.y < canvas.height + 200});
     obstacles = obstacles.filter(function(obstacle){return obstacle.clear === false});
 }
 
 function checkCollision(obstacle){
-        let dx = config.playerX - (obstacle.x+10);
-        let dy = config.playerY - (obstacle.y+2);
-        let localX = dx * Math.cos(-obstacle.angle*(Math.PI/180)) - dy * Math.sin(-obstacle.angle*(Math.PI/180));
-        let localY = dx * Math.sin(-obstacle.angle*(Math.PI/180)) + dy * Math.cos(-obstacle.angle*(Math.PI/180));
-        let closestX = Math.max(0, Math.min(localX, config.coneWidth));
-        let closestY = Math.max(-config.coneHeight/2, Math.min(localY, config.coneHeight/2));
-        let localAngle = Math.atan2(localY - closestY, localX - closestX);
-        let worldAngle = localAngle + (obstacle.angle * (Math.PI / 180));
+        let conedx = config.playerX - (obstacle.x+10);
+        let conedy = config.playerY - (obstacle.y+2);
+        let conelocalX = conedx * Math.cos(-obstacle.angle*(Math.PI/180)) - conedy * Math.sin(-obstacle.angle*(Math.PI/180));
+        let conelocalY = conedx * Math.sin(-obstacle.angle*(Math.PI/180)) + conedy * Math.cos(-obstacle.angle*(Math.PI/180));
+        let coneclosestX = Math.max(0, Math.min(conelocalX, config.coneWidth));
+        let coneclosestY = Math.max(-config.coneHeight/2, Math.min(conelocalY, config.coneHeight/2));
+        let conelocalAngle = Math.atan2(conelocalY - coneclosestY, conelocalX - coneclosestX);
+        let coneworldAngle = conelocalAngle + (obstacle.angle * (Math.PI / 180));
+
+        let sledrectLeft = obstacle.x - config.playerWidth/2;
+        let sledrectRight = obstacle.x + config.playerWidth/2;
+        let sledrectTop = obstacle.y - config.playerHeight/2;
+        let sledrectBottom = obstacle.y + config.playerHeight/2;
+        let sledclosestX = Math.max(sledrectLeft, Math.min(config.playerX, sledrectRight))
+        let sledclosestY = Math.max(sledrectTop, Math.min(config.playerY, sledrectBottom))
 
 
     // Draw Hitboxes
@@ -134,15 +151,21 @@ function checkCollision(obstacle){
             context.lineWidth = 2;
             context.strokeRect(0, -config.coneHeight/2, config.coneWidth, config.coneHeight);
             context.restore();
+        } else if (config.showHitboxes === true && obstacle.type === "sled"){
+            context.strokeStyle = "red";
+            context.lineWidth = 2;
+            context.strokeRect(sledrectLeft, sledrectTop, sledrectRight-sledrectLeft, sledrectBottom-sledrectTop);
         }
 
     if (obstacle.type === "rock" && Math.sqrt((obstacle.x + config.rockWidth/2 - config.playerX)**2 + (obstacle.y + config.rockHeight/2 - config.playerY)**2) < config.rockWidth/2 + config.playerWidth/2){
         return true;
     } else if (obstacle.type === "coin" && Math.sqrt((obstacle.x + config.coinWidth/2 - config.playerX)**2 + (obstacle.y + config.coinHeight/2 - config.playerY)**2) < config.coinWidth/2 + config.playerWidth/2){
         return true;
-    } else if (obstacle.type === "cone" && Math.sqrt((localX - closestX)**2 + (localY - closestY)**2) < config.playerWidth/2) {
-        return worldAngle;
-    } else {
+    } else if (obstacle.type === "cone" && Math.sqrt((conelocalX - coneclosestX)**2 + (conelocalY - coneclosestY)**2) < config.playerWidth/2) {
+        return coneworldAngle;
+    } else if (obstacle.type === "sled" && Math.sqrt((sledclosestX - config.playerX)**2 + (sledclosestY - config.playerY)**2) < config.playerWidth/2) {
+        return true;
+    }  else {
         return false;
     }
 

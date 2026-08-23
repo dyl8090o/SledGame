@@ -2,9 +2,9 @@ import { config } from "./config.js";
 import { coinsChange, scoreChange } from "./main.js";
 
 const everySledButton = document.querySelectorAll(".sledButton");
-console.log(everySledButton)
+ console.log(everySledButton)
 const everyTrailButton = document.querySelectorAll(".trailButton");
-console.log(everyTrailButton)
+ console.log(everyTrailButton)
 
 document.getElementById("redArrowButton").classList.add("bought");
 
@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function() {
     everyTrailButton.forEach(button => {
         let itemName = button.id.replace("Button", "")
         let itemCost = config[itemName + "Cost"];
-         console.log(`Button ID: ${button.id} | Item Name: ${itemName} | Item Cost: i${itemCost}`);
+        // console.log(`Button ID: ${button.id} | Item Name: ${itemName} | Item Cost: i${itemCost}`);
         button.addEventListener("click", (event) => {
 
             console.log("Buy Button Clicked")

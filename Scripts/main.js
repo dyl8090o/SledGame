@@ -112,7 +112,7 @@ coinsChange(null, 0)
 
 function obstacleHit(type, angle) {
     
-    if (type === "rock" || type === "cone"){
+    if (type === "rock" || type === "cone" || type === "sled"){
         rockHit(angle);
         if (config.iFrames <= 0){
             heartUpdate(null, -1);
