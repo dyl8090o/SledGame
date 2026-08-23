@@ -49,9 +49,11 @@ let feedbackSubmitButton = document.getElementById("feedbackSubmit")
 feedbackSubmitButton.addEventListener( "click", function(){
     let feedbackInput = document.getElementById("feedbackInput")
     let feedback = feedbackInput.value;
+    let feedbackUserInput = document.getElementById("feedbackInputUser")
+    let feedbackUser = feedbackUserInput.value;
     feedbackInput.value = "";
     if (feedback != ""){
-        setDoc(doc(db, "feedback", Date()), {Feedback: feedback})
+        setDoc(doc(db, "feedback", Date()), {Feedback: feedback, User: feedbackUser})
     }
 })
 /* Free Coin Debug Button 
