@@ -2,12 +2,14 @@ import { config } from "./config.js";
 import { setUpPlayer, movePlayer, rockHit } from "./PlayerHandler.js";
 import { moveObstacles } from "./ObstacleHandler.js";
 import { heartUpdate } from "./UIHandler.js";
+import { moveTrails } from "./trailHandler.js";
 export { gameStateChange, scoreChange, coinsChange, obstacleHit }
 
 let mainMenuDiv = document.getElementById("mainMenuDiv");
 let gameDiv = document.getElementById("gameDiv");
 let gameOverDiv = document.getElementById("gameOverDiv");
 let shopDiv = document.getElementById("shopDiv");
+let feedbackDiv = document.getElementById("feedbackDiv");
 gameStateChange("mainMenu");
 
 let canvas = document.getElementById("gameCanvas");
@@ -43,6 +45,7 @@ function gameStateChange(newState){
     gameDiv.style.display = "none";
     gameOverDiv.style.display = "none";
     shopDiv.style.display = "none";
+    feedbackDiv.style.display = "none";
 
     let oldState = config.gameState;
     config.gameState = newState;
@@ -60,6 +63,8 @@ function gameStateChange(newState){
         gameAnimationFrame();
     } else if (newState === "gameOver"){
         gameOverDiv.style.display = "block";
+    } else if (newState === "feedback"){
+        feedbackDiv.style.display = "block";
     }
     
     console.log("Old game state: " + oldState + " | New game state: " + newState);
@@ -71,6 +76,7 @@ function gameAnimationFrame(timestamp){
 
     if(config.gameState === "game"){
         context.clearRect(0, 0, canvas.width, canvas.height);
+        if(config.usedTrail != "none") moveTrails(deltaTime);
         movePlayer(deltaTime);
         moveObstacles(deltaTime);
         requestAnimationFrame(gameAnimationFrame);
@@ -92,7 +98,7 @@ function scoreChange(changeBy, newScore){
 }
 
 function coinsChange(changeBy, newCoins){
-    let oldCoins = config.score;
+    let oldCoins = config.coins;
     if (newCoins != null){
         config.coins = newCoins
     } else {

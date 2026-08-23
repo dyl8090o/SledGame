@@ -17,6 +17,18 @@
         <button id="playButton">Play</button>
         <button id="shopButton">Shop</button>
         <button id="skillsButton">Skills</button>
+        <button id="feedbackButton">Feedback</button>
+
+    </div>
+
+    <div id="feedbackDiv">
+
+        <h>Feedback</h>
+        <button id="feedbackSubmit">Submit</button>
+        <button id="feedbackMainMenuButton">Menu</button>
+        <textarea id="feedbackInput" placeholder="Bugs, suggestions, kind words, mean words, or anything else you would like to say about this game. I will read and consider it all!"></textarea>
+        <span id="feedbackBack"></span>
+        <span id="feedbackBorder"></span>
 
     </div>
 
@@ -60,44 +72,155 @@
         <button id="shopMainMenuButton">Menu</button>
         <span id="shopBack"></span>
         <span id="shopBorder"></span>
-        <!-- <button id="freeCoin">Free Coin</button> -->
+        <!-- --> <button id="freeCoin">Free Coin</button>  
 
 
         <div id="ShopButtons">
 
+            <button id="sledButton">Sleds</button>
+            <button id="trailButton">Trails</button>
+
+            <div id="sledDiv">
             <div class="itemDiv" id="redArrow">
                 <p>Red Arrow</p>
                 <img src="Images/redArrow.png">
-                <button class="itemButton" id="redArrowButton">5 Coins</button>
+                <button class="itemButton sledButton" id="redArrowButton">5 Coins</button>
                 <span class="itemSpan"></span>
             </div>
 
             <div class="itemDiv" id="blueArrow">
                 <p>Blue Arrow</p>
                 <img src="Images/blueArrow.png">
-                <button class="itemButton" id="blueArrowButton">5 Coins</button>
+                <button class="itemButton sledButton" id="blueArrowButton">5 Coins</button>
                 <span class="itemSpan"></span>
             </div>
 
             <div class="itemDiv" id="greenArrow">
                 <p>Green Arrow</p>
                 <img src="Images/greenArrow.png">
-                <button class="itemButton" id="greenArrowButton">5 Coins</button>
+                <button class="itemButton sledButton" id="greenArrowButton">5 Coins</button>
                 <span class="itemSpan"></span>
             </div>
 
             <div class="itemDiv" id="orangeArrow">
                 <p>Orange Arrow</p>
                 <img src="Images/orangeArrow.png">
-                <button class="itemButton" id="orangeArrowButton">5 Coins</button>
+                <button class="itemButton sledButton" id="orangeArrowButton">5 Coins</button>
                 <span class="itemSpan"></span>
             </div>
 
             <div class="itemDiv" id="purpleArrow">
                 <p>Purple Arrow</p>
                 <img src="Images/purpleArrow.png">
-                <button class="itemButton" id="purpleArrowButton">5 Coins</button>
+                <button class="itemButton sledButton" id="purpleArrowButton">5 Coins</button>
                 <span class="itemSpan"></span>
+            </div>
+
+            <div class="itemDiv" id="redSled">
+                <p>Red Sled</p>
+                <img src="Images/redSled.png">
+                <button class="itemButton sledButton" id="redSledButton">10 Coins</button>
+                <span class="itemSpan"></span>
+            </div>
+
+            <div class="itemDiv" id="greenSled">
+                <p>Green Sled</p>
+                <img src="Images/greenSled.png">
+                <button class="itemButton sledButton" id="greenSledButton">10 Coins</button>
+                <span class="itemSpan"></span>
+            </div>
+
+            <div class="itemDiv" id="blueSled">
+                <p>Blue Sled</p>
+                <img src="Images/blueSled.png">
+                <button class="itemButton sledButton" id="blueSledButton">10 Coins</button>
+                <span class="itemSpan"></span>
+            </div>
+
+            <div class="itemDiv" id="goldSled">
+                <p>Gold Sled</p>
+                <img src="Images/goldSled.png">
+                <button class="itemButton sledButton" id="orangeSledButton">10 Coins</button>
+                <span class="itemSpan"></span>
+            </div>
+
+            <div class="itemDiv" id="purpleSled">
+                <p>Purple Sled</p>
+                <img src="Images/purpleSled.png">
+                <button class="itemButton sledButton" id="purpleSledButton">10 Coins</button>
+                <span class="itemSpan"></span>
+            </div>
+
+            <div class="itemDiv" id="duckSled">
+                <p>Duck Sled</p>
+                <img src="Images/duckSled.png">
+                <button class="itemButton sledButton" id="duckSledButton">18 Coins</button>
+                <span class="itemSpan"></span>
+            </div>
+            </div>
+
+
+
+
+
+            <div id="trailDiv">
+                
+                <div class="itemDiv" id="redTrail">
+                <p>Red Trail</p>
+                <img src="Images/redCircle.png">
+                <button class="itemButton trailButton" id="redCircleTrailButton">5 Coins</button>
+                <span class="itemSpan"></span>
+            </div>
+
+            <div class="itemDiv" id="blueTrail">
+                <p>Blue Trail</p>
+                <img src="Images/blueCircle.png">
+                <button class="itemButton trailButton" id="blueCircleTrailButton">5 Coins</button>
+                <span class="itemSpan"></span>
+            </div>
+
+            <div class="itemDiv" id="greenTrail">
+                <p>Green Trail</p>
+                <img src="Images/greenCircle.png">
+                <button class="itemButton trailButton" id="greenCircleTrailButton">5 Coins</button>
+                <span class="itemSpan"></span>
+            </div>
+
+            <div class="itemDiv" id="orangeTrail">
+                <p>Orange Trail</p>
+                <img src="Images/orangeCircle.png">
+                <button class="itemButton trailButton" id="orangeCircleTrailButton">5 Coins</button>
+                <span class="itemSpan"></span>
+            </div>
+
+            <div class="itemDiv" id="purpleTrail">
+                <p>Purple Trail</p>
+                <img src="Images/purpleCircle.png">
+                <button class="itemButton trailButton" id="purpleCircleTrailButton">5 Coins</button>
+                <span class="itemSpan"></span>
+            </div>
+
+            <div class="itemDiv" id="starTrail">
+                <p>Star Trail</p>
+                <img src="Images/star.png">
+                <button class="itemButton trailButton" id="starTrailButton">10 Coins</button>
+                <span class="itemSpan"></span>
+            </div>
+
+            <div class="itemDiv" id="heartTrail">
+                <p>Heart Trail</p>
+                <img src="Images/heart.png">
+                <button class="itemButton trailButton" id="heartTrailButton">10 Coins</button>
+                <span class="itemSpan"></span>
+            </div>
+
+            <div class="itemDiv" id="duckTrail">
+                <p>Duck Trail</p>
+                <img src="Images/duckSled.png">
+                <button class="itemButton trailButton" id="duckSledTrailButton">18 Coins</button>
+                <span class="itemSpan"></span>
+            </div>
+
             </div>
 
         </div>

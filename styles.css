@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: #e0e0e0;
+    background-color: #d3d3d3;
     min-height: 100vh;
     overflow: hidden;
 }
@@ -18,6 +18,8 @@ body {
     height: 993px;
     background-color: #e0e0e0;
     color: #e0e0e0;
+
+    z-index: 0;
 }
 
 /* #region mainMenuDiv */
@@ -60,7 +62,6 @@ body {
 
 #mainMenuDiv #shopButton{
     top: 40%;
-    text-decoration-thickness: 2px;
 }
 
 #mainMenuDiv #skillsButton{
@@ -69,7 +70,113 @@ body {
     text-decoration-thickness: 2px;
 }
 
+#mainMenuDiv #feedbackButton{
+    top: 65%;
+}
+
 #mainMenuDiv button:hover{
+    transform: scale(1.1) translate(-45%, -45%);
+    background-color: rgb(130, 164, 221);
+    border-color: rgb(13, 32, 70);
+}
+
+/* #endregion */
+
+/* #region feedbackDiv */
+
+#feedbackDiv h {
+
+    color: black;
+    font-size: 64px;
+    font-weight: 700;
+
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 25%;
+    left: 50%;
+
+}
+
+#feedbackDiv #feedbackBack {
+    background-color: rgb(130, 158, 194);
+    width: 30%;
+    height: 60%;
+
+    border-radius: 20%;
+    corner-shape: squircle;
+    border-width: 8px;
+
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    z-index: -1;
+}
+
+#feedbackDiv #feedbackBorder {
+    background-color: rgb(81, 102, 128);
+    width: 32%;
+    height: 63.5%;
+
+    border-radius: 20%;
+    corner-shape: squircle;
+    border-width: 8px;
+
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    z-index: -2;
+}
+
+#feedbackDiv button {
+    color: black;
+    background-color: rgb(158, 186, 238);
+    border-color: rgb(27, 53, 105);
+    font-size: 24px;
+    font-weight: 300;
+    transition: .2s;
+
+    border-radius: 50%;
+    corner-shape: squircle;
+    border-width: 3px;
+
+    width: 5%;
+    padding-top: 5px;
+    padding-bottom: 5px;;
+
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 70%;
+    left: 40%;
+    z-index: 1;
+}
+
+#feedbackDiv #feedbackSubmit {
+    width: 10%;
+    top: 70%;
+    left: 50%;
+}
+
+#feedbackDiv #feedbackInput {
+    color: black;
+    background-color: rgb(158, 186, 238);
+    border-color: rgb(27, 53, 105);
+    font-size: 24px;
+    font-weight: 300;
+    width: 25%;
+    height: 30%;
+    padding: 10px;
+    border-radius: 10%;
+    corner-shape: squircle;
+
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 49%;
+    left: 50%;
+}
+
+#feedbackDiv button:hover{
     transform: scale(1.1) translate(-45%, -45%);
     background-color: rgb(130, 164, 221);
     border-color: rgb(13, 32, 70);
@@ -399,6 +506,18 @@ body {
     left: 50%;
 }
 
+#shopDiv #sledButton {
+    width: 10%;
+    top: 20%;
+    left: 43%;
+}
+
+#shopDiv #trailButton {
+    width: 10%;
+    top: 20%;
+    left: 57%;
+}
+
 #shopDiv button:hover{
     transform: scale(1.1) translate(-45%, -45%);
     background-color: rgb(130, 164, 221);
@@ -408,7 +527,7 @@ body {
 #shopDiv #freeCoin {
 
     width: 10%;
-    top: 80%;
+    top: 7%;
     left: 50%;
 }
 
@@ -447,5 +566,111 @@ body {
     top: 35%;
     left: 75%;
 }
+
+#shopDiv #redSled {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 59%;
+    left: 25%;
+}
+
+#shopDiv #greenSled {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 59%;
+    left: 37.5%;
+}
+
+#shopDiv #blueSled {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 59%;
+    left: 50%;
+}
+
+#shopDiv #goldSled {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 59%;
+    left: 62.5%;
+}
+
+#shopDiv #purpleSled {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 59%;
+    left: 75%;
+}
+
+#shopDiv #duckSled {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 83%;
+    left: 25%;
+}
+
+
+
+
+
+
+
+
+#shopDiv #redTrail {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 35%;
+    left: 25%;
+}
+
+#shopDiv #greenTrail {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 35%;
+    left: 37.5%;
+}
+
+#shopDiv #blueTrail {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 35%;
+    left: 50%;
+}
+
+#shopDiv #orangeTrail {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 35%;
+    left: 62.5%;
+}
+
+#shopDiv #purpleTrail {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 35%;
+    left: 75%;
+}
+
+#shopDiv #starTrail {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 59%;
+    left: 25%;
+}
+
+#shopDiv #heartTrail {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 59%;
+    left: 37.5%;
+}
+
+#shopDiv #duckTrail {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 59%;
+    left: 50%;
+}
+
 
 /* #endregion */
