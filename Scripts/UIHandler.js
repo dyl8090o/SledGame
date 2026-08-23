@@ -54,12 +54,12 @@ feedbackSubmitButton.addEventListener( "click", function(){
         setDoc(doc(db, "feedback", Date()), {Feedback: feedback})
     }
 })
-/* Free Coin Debug Button */
+/* Free Coin Debug Button 
 let freeCoin = document.getElementById("freeCoin")
 freeCoin.addEventListener( "click", function() {
     coinsChange(1, null)
 });
-
+*/
 
 function heartUpdate(setHearts, changeBy){
     let heart1 = document.getElementById("heart1");
