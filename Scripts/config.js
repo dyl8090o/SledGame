@@ -1,7 +1,7 @@
 export { config }
 
 const config = {
-    version: 22,
+    version: 23,
 
     gameState: null,
     distance: null,

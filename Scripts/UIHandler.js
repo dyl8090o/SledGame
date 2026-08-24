@@ -86,6 +86,10 @@ function heartUpdate(setHearts, changeBy){
     }
 }
 
+setInterval(() => {
+    checkVersion();
+}, 5000);
+
 let versionIdentifier = document.getElementById("versionIdentifier");
 let versionNumber = null;
 checkVersion();

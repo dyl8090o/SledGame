@@ -1,9 +1,11 @@
 import { config } from "./config.js";
 
 const possibleQuests = []
+const possibleSpecialQuests = {}
 
 function generateQuests() {
     possibleQuests.push
+
     ((x) => ({
         x: x,
         quest: `Gain ${x} coins.`,
@@ -16,7 +18,49 @@ function generateQuests() {
         quest: `Gain ${x} coins in one round.`,
         reward: `${Math.floor(x*.4)} UP.`,
         extraInfo: null
-    }))(Math.floor(Math.random() * (12 - 4 + 1) + 4))
+    }))(Math.floor(Math.random() * (12 - 4 + 1) + 4)),
+
+    ((x) => ({
+        x: x,
+        quest: `Gain ${x} distance.`,
+        reward: `${Math.floor(x*.005)} UP.`,
+        extraInfo: null
+    }))(Math.floor(Math.random() * (800 - 300 + 1) + 300)),
+
+    ((x) => ({
+        x: x,
+        quest: `Gain ${x} distance in one round.`,
+        reward: `${Math.floor(x*.02)} UP.`,
+        extraInfo: null
+    }))(Math.floor(Math.random() * (300 - 80 + 1) + 80))
+
+    ((x) => ({
+        x: x,
+        quest: `Gain ${x} distance in one round without taking damage.`,
+        reward: `${Math.floor(x*.03)} UP.`,
+        extraInfo: null
+    }))(Math.floor(Math.random() * (300 - 80 + 1) + 80))
+
+    ((x) => ({
+        x: x,
+        quest: `Survive ${x} seconds in one round with one heart.`,
+        reward: `${Math.floor(x*.08)} UP.`,
+        extraInfo: null
+    }))(Math.floor(Math.random() * (80 - 40 + 1) + 40))
+
+
+
+
+
+
+    // NEW SECTION
+
+    possibleSpecialQuests.push
+
+    
+
+
+
 }
 
 
