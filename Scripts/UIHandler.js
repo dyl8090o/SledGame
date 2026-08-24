@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js'
-import { getFirestore, doc, setDoc, collection  } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+import { getFirestore, doc, setDoc, collection, getDoc  } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 const firebaseConfig = {
   apiKey: "AIzaSyDw4yRbrAtMjdlY2l1MUWFKJsaMp83w6fU",
   authDomain: "sled-game.firebaseapp.com",
@@ -85,3 +85,26 @@ function heartUpdate(setHearts, changeBy){
         heart2.src = "Images/heart.png"
     }
 }
+
+let versionIdentifier = document.getElementById("versionIdentifier");
+let versionNumber = null;
+checkVersion();
+async function checkVersion() {
+    let docRef = doc(db, "version", "version");
+    let docSnap = await getDoc(docRef);
+    if(docSnap.exists()){
+        versionNumber = docSnap.data().number;
+    }
+
+    console.log(`version: ${config.version} | Firebase version: ${versionNumber}`)
+    console.log(`Document exists: ${docSnap.exists()} | Document data: ${docSnap.data().number}`)
+
+    if (config.version === versionNumber){
+        versionIdentifier.textContent = `V.${config.version}, Up to date.`
+    } else if (config.version < versionNumber){
+        versionIdentifier.textContent = `V.${config.version}, Out of date, refresh to update.`
+    } else if (config.version > versionNumber){
+        versionIdentifier.textContent = `V.${config.version}, Version mismatch, please inform owner.`
+    }
+}
+

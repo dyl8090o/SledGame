@@ -85,6 +85,16 @@ body {
     border-color: rgb(13, 32, 70);
 }
 
+#mainMenuDiv #versionIdentifier {
+    color: black;
+    font-size: 24px;
+    font-weight: 400;
+
+    position: absolute;
+    bottom: 1%;
+    left: 1%;
+}
+
 #mainMenuDiv #plannedFeaturesTitle {
     color: black;
     font-size: 32px;

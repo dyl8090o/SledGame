@@ -1,6 +1,8 @@
 export { config }
 
 const config = {
+    version: 22,
+
     gameState: null,
     distance: null,
     coins: null,

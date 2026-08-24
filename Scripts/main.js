@@ -121,7 +121,7 @@ function gameAnimationFrame(timestamp){
 
 function menuAnimationFrame(timestamp){
 
-    console.log(`Base Speed: ${config.baseSpeed} | Speed: ${config.speed}`)
+    // console.log(`Base Speed: ${config.baseSpeed} | Speed: ${config.speed}`)
     if (lastMenuTimestamp === 0){ lastMenuTimestamp = timestamp }
 
     let deltaTime = (timestamp - lastMenuTimestamp) / 1000;
