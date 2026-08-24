@@ -76,7 +76,7 @@ function moveObstacles(deltaTime){
                 else if(obstacles[i].angle < obstacles[i].targetAngle) obstacles[i].angle += (35 * deltaTime); 
             }
 
-            if (obstacles[i].x > -44 && obstacles[i].angle < 0 || obstacles[i].x < 745 && obstacles[i].angle > 0){
+            if (obstacles[i].x > -50 && obstacles[i].angle < 0 || obstacles[i].x < 745 && obstacles[i].angle > 0){
             obstacles[i].x += ((150 * Math.sin(obstacles[i].angle * (Math.PI/180))*1.25) * deltaTime)
     }
             

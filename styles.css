@@ -109,6 +109,153 @@ body {
 
 /* #endregion */
 
+/* #region gameDiv */
+
+#gameDiv button{
+    position: relative;
+    left: 10%;
+}
+
+#gameDiv #distanceDisplay {
+    color: black;
+    font-size: 48px;
+    font-weight: 350;
+
+    position: absolute;
+    top: 3%;
+    left: 2%;
+}
+
+#gameDiv #coinsDisplay {
+    color: black;
+    font-size: 48px;
+    font-weight: 350;
+
+    position: absolute;
+    top: 17%;
+    left: 2%;
+}
+
+#gameDiv #speedDisplay {
+    color: black;
+    font-size: 48px;
+    font-weight: 350;
+
+    position: absolute;
+    top: 10%;
+    left: 2%;
+}
+
+#gameDiv #heartContainer {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 5%;
+    left: 22%;
+}
+
+#gameDiv #heart2 {
+    margin-left: 15px;
+}
+
+#gameDiv #activeQuestsTitle {
+    color: black;
+    font-size: 36px;
+    font-weight: 350;
+
+    position: absolute;
+    transform: translate(-0%, -50%);
+    top: 5%;
+    left: 80%;
+}
+
+#gameCanvas {
+    display: flex;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    z-index: -10;
+
+    background-color: #e9e9e9;
+}
+
+#gameDiv .WASD {
+    background-color: rgb(214, 214, 214);
+    color: black;
+    width: 100px;
+    height: 100px;
+
+    border-radius: 25%;
+    corner-shape: squircle;
+    border-width: 8px;
+
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 75%;
+    left: 16%;
+    z-index: 1;
+
+    text-align:center;
+    font-size: 32px;
+}
+
+#gameDiv #W {
+    top: 64%;
+}
+
+#gameDiv #A {
+    left: 10.2%;
+}
+
+#gameDiv #D {
+    left: 21.8%;
+}
+
+#gameDiv .pressed {
+    transform: scale(1.1)translate(-45%, -45%);
+    background-color: rgb(207, 207, 207);
+}
+
+/* #endregion */
+
+/* #region Quests */
+
+#mainMenuDiv #questsDiv {
+    background-color: #d3d3d3;
+    min-height: 400px;
+    width: 25%;
+    height: 50%;
+
+    position: relative;
+    top: 46px;
+    left: 1374px;
+
+    z-index: 5;
+}
+
+#mainMenuDiv #questsTitle {
+    color: black;
+    font-size: 48px;
+    font-weight: 450;
+
+    position: absolute;
+    top: 0%;
+    left: 5%;
+}
+
+#mainMenuDiv #plannedFeatureList {
+    color: black;
+    font-size: 24px;
+    font-weight: 300;
+
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 15%;
+    left: 7%;
+}
+
+/* #endregion */
+
 /* #region feedbackDiv */
 
 #feedbackDiv h {
@@ -229,118 +376,6 @@ body {
 
 /* #endregion */
 
-/* #region gameDiv */
-
-#gameDiv button{
-    position: relative;
-    left: 10%;
-}
-
-#gameDiv #scoreDisplay {
-    color: black;
-    font-size: 48px;
-    font-weight: 350;
-
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 5%;
-    left: 10%;
-}
-
-#gameDiv #coinsDisplay {
-    color: black;
-    font-size: 48px;
-    font-weight: 350;
-
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 12%;
-    left: 10%;
-}
-
-#gameDiv #speedDisplay {
-    color: black;
-    font-size: 48px;
-    font-weight: 350;
-
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 19%;
-    left: 10%;
-}
-
-#gameDiv #heartContainer {
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 5%;
-    left: 22%;
-}
-
-#gameDiv #heart2 {
-    margin-left: 15px;
-}
-
-#gameDiv #questList {
-    color: black;
-    font-size: 36px;
-    font-weight: 350;
-
-    position: absolute;
-    transform: translate(-0%, -50%);
-    top: 5%;
-    left: 80%;
-}
-
-#gameCanvas {
-    display: flex;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
-    z-index: -10;
-
-    background-color: #e9e9e9;
-}
-
-#gameDiv .WASD {
-    background-color: rgb(214, 214, 214);
-    color: black;
-    width: 100px;
-    height: 100px;
-
-    border-radius: 25%;
-    corner-shape: squircle;
-    border-width: 8px;
-
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 75%;
-    left: 16%;
-    z-index: 1;
-
-    text-align:center;
-    font-size: 32px;
-}
-
-#gameDiv #W {
-    top: 64%;
-}
-
-#gameDiv #A {
-    left: 10.2%;
-}
-
-#gameDiv #D {
-    left: 21.8%;
-}
-
-#gameDiv .pressed {
-    transform: scale(1.1)translate(-45%, -45%);
-    background-color: rgb(207, 207, 207);
-}
-
-/* #endregion */
-
 /* #region gameOverDiv */
 
 #gameOverDiv h {
@@ -354,7 +389,7 @@ body {
     left: 50%;
 }
 
-#gameOverDiv #gameOverScoreDisplay {
+#gameOverDiv #gameOverdistanceDisplay {
     color: black;
     font-size: 48px;
     font-weight: 350;
@@ -362,6 +397,17 @@ body {
     position: absolute;
     transform: translate(-50%, -50%);
     top: 25%;
+    left: 50%;
+}
+
+#gameOverDiv #gameOverTimeDisplay {
+    color: black;
+    font-size: 48px;
+    font-weight: 350;
+
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 32%;
     left: 50%;
 }
 
@@ -383,7 +429,7 @@ body {
 
     position: absolute;
     transform: translate(-50%, -50%);
-    top: 40%;
+    top: 42%;
     left: 50%;
 }
 

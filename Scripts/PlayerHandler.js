@@ -75,8 +75,8 @@ function movePlayer(deltaTime) {
 
     let speedDisplay = document.getElementById("speedDisplay");
     if (!Number.isNaN(deltaTime)) config.baseSpeed -= (deltaTime);
-    config.speed = config.baseSpeed - (Math.cos(config.playerRotate) * 50);
-    speedDisplay.textContent = ("Speed: " + (Math.abs(Math.round((config.baseSpeed)))));
+    config.speed = config.baseSpeed - (Math.cos(config.playerRotate*1.25) * 31.25);
+    speedDisplay.textContent = `Speed: ${Math.abs(((config.baseSpeed/200)*100)/100).toFixed(2)} m/s`;
 
     // Draw Hitboxes
     if (config.showHitboxes === true){

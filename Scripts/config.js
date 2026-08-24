@@ -2,7 +2,7 @@ export { config }
 
 const config = {
     gameState: null,
-    score: null,
+    distance: null,
     coins: null,
     designWidth: 1918,
     designHeight: 993,
@@ -19,6 +19,8 @@ const config = {
     playerHeight: 80,
     lives: null,
     iFrames: null,
+    startTime: null,
+    endTime: null,
 
     trailWidth: 30,
     trailHeight: 30,

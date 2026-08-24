@@ -1,5 +1,5 @@
 import { config } from "./config.js";
-import { coinsChange, scoreChange } from "./main.js";
+import { coinsChange, distanceChange } from "./main.js";
 
 const everySledButton = document.querySelectorAll(".sledButton");
  console.log(everySledButton)

@@ -19,6 +19,10 @@
         <button id="skillsButton">Skills</button>
         <button id="feedbackButton">Feedback</button>
 
+        <div id="questsDiv">
+            <p id="questsTitle">Quests:</p>
+            <ul id="questList"></ul>
+        </div>
         <p id="plannedFeaturesTitle">Planned Updates:</p>
         <ul id="plannedFeatureList">
             <li>Quests</li>
@@ -44,7 +48,7 @@
 
     <div id="gameDiv">
 
-        <p id="scoreDisplay">Score: null/</p>
+        <p id="distanceDisplay">Distance: null/</p>
         <p id="coinsDisplay">Coins: null/</p>
         <p id="speedDisplay">Speed: null/</p>
         <div id="heartContainer">
@@ -59,7 +63,7 @@
             <span class="WASD" id="D">D</span>
         </div>
 
-        <span id="questList">Active Quests:</span>
+        <span id="activeQuestsTitle">Active Quests:</span>
 
     </div>
     <canvas id="gameCanvas" width="700" height="900"></canvas>
@@ -67,7 +71,9 @@
     <div id="gameOverDiv">
 
         <h>Game Over</h>
-        <p id="gameOverScoreDisplay">Score: null/</p>
+        <p id="gameOverdistanceDisplay">Distance: null/</p>
+        <p id="gameOverTimeDisplay">Time: null/</p>
+
         <button id="gameOverMenuButton">Menu</button>
 
     </div>

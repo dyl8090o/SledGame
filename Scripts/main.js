@@ -3,7 +3,7 @@ import { setUpPlayer, movePlayer, rockHit } from "./PlayerHandler.js";
 import { moveObstacles } from "./ObstacleHandler.js";
 import { heartUpdate } from "./UIHandler.js";
 import { moveTrails } from "./trailHandler.js";
-export { gameStateChange, scoreChange, coinsChange, obstacleHit }
+export { gameStateChange, distanceChange, coinsChange, obstacleHit }
 
 let mainMenuDiv = document.getElementById("mainMenuDiv");
 let gameDiv = document.getElementById("gameDiv");
@@ -17,10 +17,11 @@ let context = canvas.getContext("2d")
 let lastGameTimestamp = 0;
 let lastMenuTimestamp = 0;
 
-let scoreDisplay = document.getElementById("scoreDisplay");
-let scoreDisplay2 = document.getElementById("gameOverScoreDisplay");
+let distanceDisplay = document.getElementById("distanceDisplay");
+let distanceDisplay2 = document.getElementById("gameOverdistanceDisplay");
 let coinsDisplay = document.getElementById("coinsDisplay");
 let coinsDisplay2 = document.getElementById("shopCoinsDisplay");
+let timeDisplay = document.getElementById("gameOverTimeDisplay");
 
 
 
@@ -56,12 +57,6 @@ function resizeScreen() {
 
 }
 
-setInterval (() => {
-        if (config.gameState === "game"){
-            scoreChange(1, null);
-        }
-    }, 1000)
-
 function gameStateChange(newState){
     mainMenuDiv.style.display = "none";
     gameDiv.style.display = "none";
@@ -73,23 +68,31 @@ function gameStateChange(newState){
     let oldState = config.gameState;
     config.gameState = newState;
     if (newState === "mainMenu"){
+
         lastMenuTimestamp = 0;
         config.playerX = -1000000000;
         config.speed = -250;
         mainMenuDiv.style.display = "block";
         canvas.style.display = "block";
         requestAnimationFrame(menuAnimationFrame);
+
     } else if (newState === "shop"){
+
         shopDiv.style.display = "block";
+
     } else if (newState === "game"){
+
         lastGameTimestamp = 0;
         gameDiv.style.display = "block";
         canvas.style.display = "block";
         config.baseSpeed = -200;
-        scoreChange(null, 0);
+        distanceChange(null, 0);
         setUpPlayer();
         heartUpdate(null, 2)
         gameAnimationFrame();
+        config.startTime = Date.now()/1000;
+        config.endTime = null
+        
     } else if (newState === "gameOver"){
         gameOverDiv.style.display = "block";
     } else if (newState === "feedback"){
@@ -106,8 +109,10 @@ function gameAnimationFrame(timestamp){
     if(config.gameState === "game"){
         context.clearRect(0, 0, canvas.width, canvas.height);
         if(config.usedTrail != "none") moveTrails(deltaTime);
+        if(deltaTime > 0) distanceChange((config.speed/-200)*deltaTime, null);
         movePlayer(deltaTime);
         moveObstacles(deltaTime);
+        timeDisplay.textContent = `Time: ${Math.floor(config.endTime-config.startTime)} s`
         requestAnimationFrame(gameAnimationFrame);
     }else {
         context.clearRect(0, 0, canvas.width, canvas.height);
@@ -131,16 +136,16 @@ function menuAnimationFrame(timestamp){
     }
 }
 
-function scoreChange(changeBy, newScore){
-    let oldScore = config.score;
-    if (newScore != null){
-        config.score = newScore
+function distanceChange(changeBy, newdistance){
+    let olddistance = config.distance;
+    if (newdistance != null){
+        config.distance = newdistance
     } else {
-        config.score = config.score + changeBy;
+        config.distance = config.distance + changeBy;
     }
-    scoreDisplay.textContent = ("Score: " + config.score);
-    scoreDisplay2.textContent = ("Score: " + config.score);
-    // console.log("Old score: " + oldScore + " | New score: " + config.score);
+    distanceDisplay.textContent = (`Distance: ${Math.round(config.distance*1)/1} m`);
+    distanceDisplay2.textContent = (`Distance: ${Math.round(config.distance*1)/1} m`);
+    // console.log("Old distance: " + olddistance + " | New distance: " + config.distance);
 }
 
 function coinsChange(changeBy, newCoins){

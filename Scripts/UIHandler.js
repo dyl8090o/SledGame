@@ -12,7 +12,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 import { config } from "./config.js";
-import { coinsChange, gameStateChange, scoreChange } from "./main.js";
+import { coinsChange, gameStateChange, distanceChange } from "./main.js";
 export { heartUpdate }
 
 let playButton = document.getElementById("playButton")
@@ -74,6 +74,8 @@ function heartUpdate(setHearts, changeBy){
     }
 
     if(config.lives === 0){
+        config.endTime = (Date.now()/1000)
+        console.log(`Time: ${config.endTime-config.startTime} | ${config.endTime} - ${config.startTime}`)
         gameStateChange("gameOver");
     } else if(config.lives === 1){
         heart1.src = "Images/heart.png"
