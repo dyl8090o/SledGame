@@ -3,6 +3,7 @@ import { setUpPlayer, movePlayer, rockHit } from "./PlayerHandler.js";
 import { moveObstacles } from "./ObstacleHandler.js";
 import { heartUpdate } from "./UIHandler.js";
 import { moveTrails } from "./trailHandler.js";
+import { saveData } from "./accountHandler.js";
 export { gameStateChange, distanceChange, coinsChange, obstacleHit }
 
 let mainMenuDiv = document.getElementById("mainMenuDiv");
@@ -92,9 +93,17 @@ function gameStateChange(newState){
         gameAnimationFrame();
         config.startTime = Date.now()/1000;
         config.endTime = null
+        config.roundsPlayed += 1;
         
     } else if (newState === "gameOver"){
         gameOverDiv.style.display = "block";
+        if (config.bestDistance < config.distance) { config.bestDistance = config.distance }
+        if (config.bestSpeed > config.speed) { config.bestSpeed = config.speed }
+        if (config.bestTime < config.endTime - config.startTime) { config.bestTime = config.endTime - config.startTime }
+        config.totalDistance += config.distance;
+        config.totalSpeed += config.speed;
+        config.totalTime += config.endTime - config.startTime;
+        saveData();
     } else if (newState === "feedback"){
         feedbackDiv.style.display = "block";
     }
@@ -167,6 +176,10 @@ function obstacleHit(type, angle) {
         rockHit(angle);
         if (config.iFrames <= 0){
             heartUpdate(null, -1);
+            if (type === "rock") { config.livesLostToRocks += 1 }
+            if (type === "cone") { config.livesLostToWindCones += 1 }
+            if (type === "sled") { config.livesLostToSleds += 1 }
+            config.livesLost += 1;
             config.iFrames = 1;
         }
     } else if (type === "collectible"){
@@ -185,3 +198,4 @@ document.addEventListener("DOMContentLoaded", function() {
     gameStateChange("mainMenu")
 
 })
+

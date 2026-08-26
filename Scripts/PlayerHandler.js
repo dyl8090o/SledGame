@@ -1,10 +1,11 @@
+import { saveData } from "./accountHandler.js";
 import { config } from "./config.js";
 import { gameStateChange } from "./main.js";
 export { setUpPlayer, movePlayer, rockHit }
 
 let canvas = document.getElementById("gameCanvas");
 let context = canvas.getContext("2d")
-const keys = { left: false, right: false, up: false, down: false};
+const keys = { left: false, right: false, up: false, down: false, shift: false, h: false};
 let verticalModifier = 0;
 let rockHitModifier = 0;
 let rockHitXModifier = 0;
@@ -37,15 +38,13 @@ function movePlayer(deltaTime) {
     if (config.iFrames > 0) config.iFrames = config.iFrames - deltaTime;
 
     // Rotate Sled
-    if (keys.left === true && config.playerRotate > (-60 * (Math.PI / 180)) && config.playerX > 44) config.playerRotate = config.playerRotate - ((100 * (Math.PI / 180)) * deltaTime);
-    if (keys.right === true && config.playerRotate < (60 * (Math.PI / 180)) && config.playerX < 657) config.playerRotate = config.playerRotate + ((100 * (Math.PI / 180)) * deltaTime);
+    if (keys.left === true && config.playerRotate > (-60 * (Math.PI / 180)) && config.playerX > 44) {config.playerRotate = config.playerRotate - ((100 * (Math.PI / 180)) * deltaTime); config.totalAngleRotated += Math.abs((100 * (Math.PI / 180)) * deltaTime);}
+    if (keys.right === true && config.playerRotate < (60 * (Math.PI / 180)) && config.playerX < 657) {config.playerRotate = config.playerRotate + ((100 * (Math.PI / 180)) * deltaTime); config.totalAngleRotated += Math.abs((100 * (Math.PI / 180)) * deltaTime);}
     // Rotate Sled If Offscreen
-    if (config.playerRotate > (-60 * (Math.PI / 180)) && config.playerX > 657) config.playerRotate = config.playerRotate - ((100 * (Math.PI / 180)) * deltaTime);
-    if (config.playerRotate < (60 * (Math.PI / 180)) && config.playerX < 42) config.playerRotate = config.playerRotate + ((100 * (Math.PI / 180)) * deltaTime);
+    if (config.playerRotate > (-60 * (Math.PI / 180)) && config.playerX > 657) {config.playerRotate = config.playerRotate - ((100 * (Math.PI / 180)) * deltaTime); config.totalAngleRotated += Math.abs((100 * (Math.PI / 180)) * deltaTime);}
+    if (config.playerRotate < (60 * (Math.PI / 180)) && config.playerX < 42) {config.playerRotate = config.playerRotate + ((100 * (Math.PI / 180)) * deltaTime); config.totalAngleRotated += Math.abs((100 * (Math.PI / 180)) * deltaTime);}
     // Move Sled Based On Rotation
-    if (config.playerX > 44 && config.playerRotate < 0 || config.playerX < 655 && config.playerRotate > 0){
-        config.playerX = config.playerX + ((125 * Math.sin(config.playerRotate)*1.25) * deltaTime)
-    }
+    if (config.playerX > 44 && config.playerRotate < 0 || config.playerX < 655 && config.playerRotate > 0){config.playerX = config.playerX + ((125 * Math.sin(config.playerRotate)*1.25) * deltaTime); config.totalHorizontalMovement += Math.abs((125 * Math.sin(config.playerRotate)*1.25) * deltaTime);}
 
     // W/S Changing verticalModifier
     if (keys.up === true && config.playerY > 50 && verticalModifier < 1) verticalModifier = verticalModifier + ((125 * .02) * deltaTime);
@@ -54,15 +53,15 @@ function movePlayer(deltaTime) {
     if (config.playerY < 50 && verticalModifier < 1) verticalModifier = verticalModifier - ((125 * .02) * deltaTime);
     if (config.playerY > 850 && verticalModifier > -1) verticalModifier = verticalModifier + ((125 * .02) * deltaTime);
     // Move Sled Up & Down
-    if (verticalModifier > 0 && config.playerY > 50) config.playerY = config.playerY - ((150 * verticalModifier) * deltaTime);
-    if (verticalModifier < 0 && config.playerY < 850) config.playerY = config.playerY - ((150 * verticalModifier) * deltaTime);
+    if (verticalModifier > 0 && config.playerY > 50) {config.playerY = config.playerY - ((150 * verticalModifier) * deltaTime); config.totalVerticalMovement += Math.abs((150 * verticalModifier) * deltaTime);}
+    if (verticalModifier < 0 && config.playerY < 850) {config.playerY = config.playerY - ((150 * verticalModifier) * deltaTime); config.totalVerticalMovement += Math.abs((150 * verticalModifier) * deltaTime);}
     // verticalModifier Decay
     if (verticalModifier > 0) verticalModifier = verticalModifier - ((125 * .008) * deltaTime);
     if (verticalModifier < 0) verticalModifier = verticalModifier + ((125 * .008) * deltaTime);
 
     // RockHit Modifiers
-    if (rockHitXModifier > 0 && config.playerX > 44 || rockHitXModifier < 0 && config.playerX < 655) config.playerX = config.playerX + ((150 * rockHitXModifier * rockHitModifier) * deltaTime);
-    if (rockHitYModifier > 0 && config.playerY > 50 || rockHitYModifier < 0 && config.playerY < 850) config.playerY = config.playerY + ((150 * rockHitYModifier * rockHitModifier) * deltaTime);
+    if (rockHitXModifier > 0 && config.playerX > 44 || rockHitXModifier < 0 && config.playerX < 655) {config.playerX = config.playerX + ((150 * rockHitXModifier * rockHitModifier) * deltaTime); config.totalHorizontalMovement += Math.abs((150 * rockHitXModifier * rockHitModifier) * deltaTime);}
+    if (rockHitYModifier > 0 && config.playerY > 50 || rockHitYModifier < 0 && config.playerY < 850) {config.playerY = config.playerY + ((150 * rockHitYModifier * rockHitModifier) * deltaTime); config.totalVerticalMovement += Math.abs((150 * rockHitYModifier * rockHitModifier) * deltaTime);}
     // RockHit Modifier Decay
     if (rockHitModifier > 0) rockHitModifier = rockHitModifier - ((125 * .008) * deltaTime);
 
@@ -74,9 +73,11 @@ function movePlayer(deltaTime) {
     context.restore();
 
     let speedDisplay = document.getElementById("speedDisplay");
+    let speedDisplay2 = document.getElementById("gameOverspeedDisplay");
     if (!Number.isNaN(deltaTime)) config.baseSpeed -= (deltaTime);
     config.speed = config.baseSpeed - (Math.cos(config.playerRotate*1.25) * 31.25);
     speedDisplay.textContent = `Speed: ${Math.abs(((config.baseSpeed/200)*100)/100).toFixed(2)} m/s`;
+    speedDisplay2.textContent = `Speed: ${Math.abs(((config.baseSpeed/200)*100)/100).toFixed(2)} m/s`;
 
     // Draw Hitboxes
     if (config.showHitboxes === true){
@@ -114,9 +115,14 @@ document.addEventListener("DOMContentLoaded", function() {
     if (event.key.toLowerCase() === "w" || event.key === "ArrowUp") {keys.up = true; W.classList.add("pressed");}
     if (event.key.toLowerCase() === "s" || event.key === "ArrowDown") {keys.down = true; S.classList.add("pressed");}
 
-    if (event.key.toLowerCase() === "h") {
-        if (config.showHitboxes === false) config.showHitboxes = true;
-        else config.showHitboxes = false;
+    if (event.key.toLowerCase() === "h") { keys.h = true;
+        if (config.showHitboxes === false && keys.shift === true) config.showHitboxes = true;
+        else if (keys.shift === true) config.showHitboxes = false;
+    }
+
+    if (event.key === "Shift") { keys.shift = true;
+        if (config.showHitboxes === false && keys.h === true) config.showHitboxes = true;
+        else if (keys.h === true) config.showHitboxes = false;
     }
 
     })
@@ -125,6 +131,9 @@ document.addEventListener("DOMContentLoaded", function() {
     if (event.key.toLowerCase() === "d" || event.key === "ArrowRight") {keys.right = false; D.classList.remove("pressed");}
     if (event.key.toLowerCase() === "w" || event.key === "ArrowUp") {keys.up = false; W.classList.remove("pressed");}
     if (event.key.toLowerCase() === "s" || event.key === "ArrowDown") {keys.down = false; S.classList.remove("pressed");}
+    if (event.key.toLowerCase() === "u") { config.timesUPressed += 1; saveData(); }
+    if (event.key.toLowerCase() === "h") { keys.h = false; }
+    if (event.key === "Shift") { keys.shift = false; }
     })
 
     W.addEventListener("touchstart", function() {keys.up = true; W.classList.add("pressed");})

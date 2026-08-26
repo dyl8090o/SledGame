@@ -22,15 +22,31 @@
 
         <div id="questsDiv">
             <p id="questsTitle">Quests:</p>
+            <p id="questsDisabled">Quests Disabled</p>
             <ul id="questList"></ul>
         </div>
+
+        <button id="signUpButton">Sign Up</button>
+            <button id="logInButton">Log In</button>
+            <p id="userIdentifier">Signed in as: null/</p>
+
+        <div id="accountDiv">
+            <span id="signLogSpan"></span>
+            <div id="signLogDiv">
+                <input id="usernameInput" placeholder="Username" autocomplete="off">
+                <input id="passwordInput" placeholder="Password" type="password" autocomplete="off">
+                <p id="forgotPassword">Forgot username/password? Contact dyl8090o.</p>
+                <button id="accountButton">null/</button>
+            </div>
+        </div>
+
         <p id="plannedFeaturesTitle">Planned Updates:</p>
         <ul id="plannedFeatureList">
             <li>Quests</li>
             <li>Acheivements</li>
             <li>Powerups</li>
             <li>Upgrade tree</li>
-            <li>User saves</li>
+            <li>Stats page</li>
         </ul>
 
     </div>
@@ -74,6 +90,7 @@
 
         <h>Game Over</h>
         <p id="gameOverdistanceDisplay">Distance: null/</p>
+        <p id="gameOverspeedDisplay">Speed: null/</p>
         <p id="gameOverTimeDisplay">Time: null/</p>
 
         <button id="gameOverMenuButton">Menu</button>
@@ -246,6 +263,7 @@
 </div>
 </body>
 
+<script type="module" src="Scripts/accountHandler.js"></script>
 <script type="module" src="Scripts/config.js"></script>
 <script type="module" src="Scripts/main.js"></script>
 <script type="module" src="Scripts/ObstacleHandler.js"></script>

@@ -56,6 +56,9 @@ feedbackSubmitButton.addEventListener( "click", function(){
         setDoc(doc(db, "feedback", Date()), {Feedback: feedback, User: feedbackUser})
     }
 })
+
+
+
 /* Free Coin Debug Button 
 let freeCoin = document.getElementById("freeCoin")
 freeCoin.addEventListener( "click", function() {
@@ -79,7 +82,7 @@ function heartUpdate(setHearts, changeBy){
         gameStateChange("gameOver");
     } else if(config.lives === 1){
         heart1.src = "Images/heart.png"
-        heart2.src = "Images/BrokenHeart.png"
+        heart2.src = "Images/BrokenHeart.png"   
     } else if(config.lives === 2){
         heart1.src = "Images/heart.png"
         heart2.src = "Images/heart.png"
@@ -100,15 +103,15 @@ async function checkVersion() {
         versionNumber = docSnap.data().number;
     }
 
-    console.log(`version: ${config.version} | Firebase version: ${versionNumber}`)
-    console.log(`Document exists: ${docSnap.exists()} | Document data: ${docSnap.data().number}`)
+    // console.log(`version: ${config.version} | Firebase version: ${versionNumber}`)
+    // console.log(`Document exists: ${docSnap.exists()} | Document data: ${docSnap.data().number}`)
 
     if (config.version === versionNumber){
         versionIdentifier.textContent = `V.${config.version}, Up to date.`
     } else if (config.version < versionNumber){
         versionIdentifier.textContent = `V.${config.version}, Out of date, refresh to update.`
     } else if (config.version > versionNumber){
-        versionIdentifier.textContent = `V.${config.version}, Version mismatch, please inform owner.`
+        versionIdentifier.textContent = `V.${config.version}, Version mismatch, please inform dyl8090o.`
     }
 }
 

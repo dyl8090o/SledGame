@@ -15,16 +15,28 @@ const coneImage = new Image();
 coneImage.src = "Images/windCone.png";
 
 let obstacles = []
+let obstacleTimeout;
 
-setInterval (() => {
-    if (config.gameState === "game" || config.gameState === "mainMenu"){
-        spawnObstacle();
+scheduleNextSpawn();
+function scheduleNextSpawn() {
+    let delay = .75;
+    if (config.speed < 0){
+        delay = Math.floor(Math.random() * (config.obstacleMaxSpawn - config.obstacleMinSpawn + 1) + config.obstacleMinSpawn) / (config.speed / -200);
+    } else {
+        delay = 0.75;
     }
-}, (Math.floor(Math.random()) * ((config.obstacleMaxSpawn+config.baseSpeed+200) - (config.obstacleMinSpawn+config.baseSpeed+200) + 1)) + (config.obstacleMinSpawn+config.baseSpeed+200));
+    
+    obstacleTimeout = setTimeout(() => {
+        if (config.gameState === "game" || config.gameState === "mainMenu") {
+            spawnObstacle();
+        }
+        scheduleNextSpawn();
+    }, delay);
+}
 
 function spawnObstacle(){
     let randomNumber = Math.floor(Math.random() * (100 - 1 + 1)) + 1;
-    console.log("Random Obstacle: " + randomNumber);
+    // console.log("Random Obstacle: " + randomNumber);
 
     let sledImage = new Image();
             let randomSled = Math.floor(Math.random(1 - 1 + 1) + 1);
@@ -32,17 +44,25 @@ function spawnObstacle(){
                 sledImage.src = "Images/redObstacleSled.png";
             }
 
-    if (1 <= randomNumber && randomNumber <= 69) obstacles.push({ x: Math.floor(Math.random() * (655 - 44 + 1) + 44), y: -100, clear: false, type: "rock"});
-    if (79 <= randomNumber && randomNumber <= 84) obstacles.push({ x: Math.floor(Math.random() * (655 - 44 + 1) + 44), y: -100, clear: false, type: "coin" });
-    if (85 <= randomNumber && randomNumber <= 100) obstacles.push({ x: Math.floor(Math.random() * (655 - 44 + 1) + 44), y: -100, rotateSpeed: Math.floor(Math.random() * (120 - 45 + 1) + 45), angle: Math.floor(Math.random() * (360 - 0 + 1) + 0), clear: false, type: "cone" });
-    if (70 <= randomNumber && randomNumber <= 78) obstacles.push({ x: Math.floor(Math.random() * (655 - 44 + 1) + 44), y: -100, angle: Math.floor(Math.random() * (60 - (-60) + 1) + (-60)), targetAngle: Math.floor(Math.random() * (60 - (-60) + 1) + (-60)), sled: sledImage, clear: false, type: "sled" });
+    if (1 <= randomNumber && randomNumber <= 73) obstacles.push({ x: Math.floor(Math.random() * (655 - 44 + 1) + 44), y: -100, clear: false, type: "rock"});
+    if (83 <= randomNumber && randomNumber <= 85) obstacles.push({ x: Math.floor(Math.random() * (655 - 44 + 1) + 44), y: -100, clear: false, type: "coin" });
+    if (86 <= randomNumber && randomNumber <= 100) obstacles.push({ x: Math.floor(Math.random() * (655 - 44 + 1) + 44), y: -100, rotateSpeed: Math.floor(Math.random() * (120 - 45 + 1) + 45), angle: Math.floor(Math.random() * (360 - 0 + 1) + 0), clear: false, type: "cone" });
+    if (74 <= randomNumber && randomNumber <= 82) obstacles.push({ x: Math.floor(Math.random() * (655 - 44 + 1) + 44), y: -100, angle: Math.floor(Math.random() * (60 - (-60) + 1) + (-60)), targetAngle: Math.floor(Math.random() * (60 - (-60) + 1) + (-60)), sled: sledImage, clear: false, type: "sled" });
 
-    let randomNumber2 = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
-    if (randomNumber2 === 1)[
+    let randomNumber2 = Math.floor(Math.random() * (200 - 1 + 1)) + 1;
+    if (1 <= randomNumber2 && randomNumber2 <= 16){
         setTimeout(() =>{
             spawnObstacle();
-        }, (Math.floor(Math.random()) * ((750+config.baseSpeed+200) - (250+config.baseSpeed+200) + 1)) + (250+config.baseSpeed+200)
-    )]
+        }, (Math.floor(Math.random() * ((750) - (250) + 1) + (250))/(config.speed/-200))
+    )}
+    if (20 <= randomNumber2 && randomNumber2 <= 22){
+        setTimeout(() =>{
+            spawnObstacle();
+        }, (Math.floor(Math.random() * ((500) - (100) + 1) + (100))/(config.speed/-200))
+    )}
+    if (22 <= randomNumber2 && randomNumber2 <= 24){
+            spawnObstacle();
+    }
 }
 
 function moveObstacles(deltaTime){
@@ -93,6 +113,8 @@ function moveObstacles(deltaTime){
         if(obstacles[i].type === "coin" && checkCollision(obstacles[i])){
             console.log("Hit a coin!");
             coinsChange(1, null);
+            config.coinsCollected += 1;
+            config.totalCoins += 1;
             obstacles[i].clear = true;
         }
 

@@ -1,5 +1,6 @@
 import { config } from "./config.js";
 import { coinsChange, distanceChange } from "./main.js";
+import { saveData } from "./accountHandler.js";
 
 const everySledButton = document.querySelectorAll(".sledButton");
  console.log(everySledButton)
@@ -68,6 +69,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 button.classList.add("bought");
                 coinsChange(-itemCost, null);
                 changeSled(button.id.replace("Button", ""))
+                config.sleds.push(button.id.replace("Button", ""));
+                saveData();
             } else if (button.classList.contains("bought")){
                 changeSled(button.id.replace("Button", ""));
             }
@@ -86,6 +89,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 button.classList.add("bought");
                 coinsChange(-itemCost, null);
                 changeTrail(button.id.replace("TrailButton", ""))
+                config.trails.push(button.id.replace("TrailButton", ""));
+                saveData();
             } else if (button.classList.contains("bought")){
                 changeTrail(button.id.replace("TrailButton", ""));
             }

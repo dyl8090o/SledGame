@@ -1,11 +1,38 @@
 export { config }
 
 const config = {
-    version: 23,
+    version: 24,
+    accountName: null,
+
+    coins: 0,
+    sleds: [],
+    trails: [],
+    
+    coinsCollected: 0,
+    totalCoins: 0,
+    livesLost: 0,
+    livesLostToRocks: 0,
+    livesLostToWindCones: 0,
+    livesLostToSleds: 0,
+    questsComplete: 0,
+    questsSkipped: 0,
+    totalSession: 0,
+    roundsPlayed: 0,
+    joinDate: null,
+    timesUPressed: 0,
+    totalAngleRotated: 0,
+    totalHorizontalMovement: 0,
+    totalVerticalMovement: 0,
+    bestDistance: 0,
+    totalDistance: 0,
+    bestTime: 0,
+    totalTime: 0,
+    bestSpeed: 0,
+    totalSpeed: 0,
+
 
     gameState: null,
     distance: null,
-    coins: null,
     designWidth: 1918,
     designHeight: 993,
 
@@ -27,11 +54,11 @@ const config = {
     trailWidth: 30,
     trailHeight: 30,
 
-    baseSpeed: -200,
+    baseSpeed: null,
     speed: null,
 
-    obstacleMinSpawn: 750,
-    obstacleMaxSpawn: 1750,
+    obstacleMinSpawn: 600,
+    obstacleMaxSpawn: 900,
     rockWidth: 80,
     rockHeight: 80,
     coinWidth: 40,
@@ -59,6 +86,6 @@ const config = {
     purpleCircleTrailCost: 5,
     starTrailCost: 10,
     heartTrailCost: 10,
-    duckSledTrailCost: 10,
+    duckSledTrailCost: 18,
     
 }
