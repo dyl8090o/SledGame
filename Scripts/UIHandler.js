@@ -95,6 +95,7 @@ setInterval(() => {
 let versionIdentifier = document.getElementById("versionIdentifier");
 let versionNumber = null;
 let gameDisabled = false;
+let disabledVersions = [];
 checkVersion();
 async function checkVersion() {
     let docRef = doc(db, "version", "version");
@@ -102,6 +103,9 @@ async function checkVersion() {
     if(docSnap.exists()){
         versionNumber = docSnap.data().number;
         gameDisabled = docSnap.data().disabled;
+        
+        disabledVersions = docSnap.data().disabledVersions
+        if (disabledVersions.includes(config.version)){ gameDisabled = true }
     }
 
     // console.log(`version: ${config.version} | Firebase version: ${versionNumber}`)
@@ -113,6 +117,6 @@ async function checkVersion() {
         versionIdentifier.textContent = `V.${config.version}, Out of date, refresh to update.`
     } else if (config.version > versionNumber){
         versionIdentifier.textContent = `V.${config.version}, Version mismatch, please inform dyl8090o.`
-    } if (config.version === 24 || gameDisabled === true) { console.log(`Game disabled!`); gameStateChange("disabled") }
+    } if (gameDisabled === true) { console.log(`Game disabled!`); gameStateChange("disabled") }
 }
 
