@@ -3,7 +3,7 @@ import { setUpPlayer, movePlayer, rockHit } from "./PlayerHandler.js";
 import { moveObstacles } from "./ObstacleHandler.js";
 import { heartUpdate } from "./UIHandler.js";
 import { moveTrails } from "./trailHandler.js";
-import { saveData } from "./accountHandler.js";
+import { saveData, loadData } from "./accountHandler.js";
 export { gameStateChange, distanceChange, coinsChange, obstacleHit }
 
 let mainMenuDiv = document.getElementById("mainMenuDiv");
@@ -11,6 +11,7 @@ let gameDiv = document.getElementById("gameDiv");
 let gameOverDiv = document.getElementById("gameOverDiv");
 let shopDiv = document.getElementById("shopDiv");
 let feedbackDiv = document.getElementById("feedbackDiv");
+let gameDisabled = document.getElementById("gameDisabled");
 
 let canvas = document.getElementById("gameCanvas");
 let context = canvas.getContext("2d")
@@ -65,11 +66,13 @@ function gameStateChange(newState){
     shopDiv.style.display = "none";
     feedbackDiv.style.display = "none";
     canvas.style.display = "none";
+    gameDisabled.style.display = "none";
 
     let oldState = config.gameState;
     config.gameState = newState;
     if (newState === "mainMenu"){
 
+        hitboxesThisRound = false;
         lastMenuTimestamp = 0;
         config.playerX = -1000000000;
         config.speed = -250;
@@ -82,6 +85,7 @@ function gameStateChange(newState){
         shopDiv.style.display = "block";
 
     } else if (newState === "game"){
+        loadData();
 
         lastGameTimestamp = 0;
         gameDiv.style.display = "block";
@@ -91,26 +95,32 @@ function gameStateChange(newState){
         setUpPlayer();
         heartUpdate(null, 2)
         gameAnimationFrame();
-        config.startTime = Date.now()/1000;
-        config.endTime = null
         config.roundsPlayed += 1;
+        config[`roundsWith${config.usedSledString}`] += 1;
+        config[`roundsWith${config.usedTrailString}`] += 1;
+        console.log(config[`roundsWith${config.usedSledString}`])
         
     } else if (newState === "gameOver"){
         gameOverDiv.style.display = "block";
         if (config.bestDistance < config.distance) { config.bestDistance = config.distance }
         if (config.bestSpeed > config.speed) { config.bestSpeed = config.speed }
-        if (config.bestTime < config.endTime - config.startTime) { config.bestTime = config.endTime - config.startTime }
+        if (config.bestTime < config.roundTime) { config.bestTime = config.roundTime }
         config.totalDistance += config.distance;
         config.totalSpeed += config.speed;
-        config.totalTime += config.endTime - config.startTime;
+        config.totalTime += config.roundTime;
+        if (hitboxesThisRound === true){ config.roundsWithHitboxes += 1; hitboxesThisRound = false}
+        timeDisplay.textContent = `Time: ${Math.round(config.roundTime)} s`
         saveData();
     } else if (newState === "feedback"){
         feedbackDiv.style.display = "block";
+    } else if (newState === "disabled"){
+        gameDisabled.style.display = "block";
     }
     
     console.log("Old game state: " + oldState + " | New game state: " + newState);
 }
 
+let hitboxesThisRound = false
 function gameAnimationFrame(timestamp){
     let deltaTime = (timestamp - lastGameTimestamp) / 1000;
     lastGameTimestamp = timestamp
@@ -121,7 +131,10 @@ function gameAnimationFrame(timestamp){
         if(deltaTime > 0) distanceChange((config.speed/-200)*deltaTime, null);
         movePlayer(deltaTime);
         moveObstacles(deltaTime);
-        timeDisplay.textContent = `Time: ${Math.floor(config.endTime-config.startTime)} s`
+
+        if (hitboxesThisRound === false && config.showHitboxes === true){ hitboxesThisRound = true }
+        if (deltaTime > 0){ config.roundTime += deltaTime}
+
         requestAnimationFrame(gameAnimationFrame);
     }else {
         context.clearRect(0, 0, canvas.width, canvas.height);

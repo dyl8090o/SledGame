@@ -15,11 +15,12 @@ const auth = getAuth(app);
 
 import { config } from "./config.js";
 import { coinsChange } from "./main.js";
-export { saveData }
+export { saveData, loadData }
 
 let accountDiv = document.getElementById("accountDiv");
 let signUpButton = document.getElementById("signUpButton");
 let logInButton = document.getElementById("logInButton");
+let userIdentifier = document.getElementById("userIdentifier");
 let accountButton = document.getElementById("accountButton");
 let usernameInput = document.getElementById("usernameInput");
 let passwordInput = document.getElementById("passwordInput");
@@ -46,10 +47,31 @@ let storedData = [
     "bestTime",
     "totalTime",
     "bestSpeed",
-    "totalSpeed"
+    "totalSpeed",
+    "roundsWithHitboxes",
+    "roundsWithredArrow",
+    "roundsWithgreenArrow",
+    "roundsWithblueArrow",
+    "roundsWithorangeArrow",
+    "roundsWithpurpleArrow",
+    "roundsWithredSled",
+    "roundsWithgreenSled",
+    "roundsWithblueSled",
+    "roundsWithgoldSled",
+    "roundsWithpurpleSled",
+    "roundsWithduckSled",
+    "roundsWithredCircleTrail",
+    "roundsWithgreenCircleTrail",
+    "roundsWithblueCircleTrail",
+    "roundsWithorangeCircleTrail",
+    "roundsWithpurpleCircleTrail",
+    "roundsWithstarTrail",
+    "roundsWithheartTrail",
+    "roundsWithduckSledTrail",
 ]
 
 accountDiv.style.display = "none";
+userIdentifier.style.display = "none";
 
 signUpButton.addEventListener("click", function(){
     if (logOrSign === null || logOrSign === "log"){
@@ -113,9 +135,29 @@ logIn("loggedOut", "fAkno9SYu4NKBQupZF16ehwQ72VP8")
 async function logIn(username, password){
 try {
 await signInWithEmailAndPassword(auth, username + "@sledgame.local", password);
-const docRef = doc(db, "accounts", username);
-const docSnap = await getDoc(docRef);
-console.log(`Logged in as ${username}`)
+config.accountName = username;
+loadData();
+config.totalSession += 1;
+saveData();
+if (username != "loggedOut"){
+signUpButton.style.display = "none";
+logInButton.style.display = "none";
+accountDiv.style.display = "none";
+userIdentifier.textContent = `Logged in as: ${username}`;
+userIdentifier.style.display = "block";
+}
+} catch (error) {
+    console.log(error);
+    if (error.code === "auth/invalid-credential"){ accountButton.textContent = "Incorrect Password"; }
+        if (error.code === "auth/too-many-requests"){ accountButton.textContent = "Too Many Attempts"; }
+        if (error.code === "auth/network-request-failed"){ accountButton.textContent = "No Connection"; }
+}}
+
+async function loadData(){
+    let username = config.accountName;
+    const docRef = doc(db, "accounts", username);
+    const docSnap = await getDoc(docRef);
+    console.log(`Logged in as ${username}`)
 
     if (docSnap.exists()){
         let data = docSnap.data();
@@ -170,13 +212,7 @@ console.log(`Logged in as ${username}`)
             await updateDoc(docRef, toPopulate);
         }
     }
-config.totalSession += 1;
-} catch (error) {
-    console.log(error);
-    if (error.code === "auth/invalid-credential"){ accountButton.textContent = "Incorrect Password"; }
-        if (error.code === "auth/too-many-requests"){ accountButton.textContent = "Too Many Attempts"; }
-        if (error.code === "auth/network-request-failed"){ accountButton.textContent = "No Connection"; }
-}}
+}
 
 async function saveData() {
     if (config.accountName === null) return;

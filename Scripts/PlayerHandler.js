@@ -38,7 +38,7 @@ function movePlayer(deltaTime) {
     if (config.iFrames > 0) config.iFrames = config.iFrames - deltaTime;
 
     // Rotate Sled
-    if (keys.left === true && config.playerRotate > (-60 * (Math.PI / 180)) && config.playerX > 44) {config.playerRotate = config.playerRotate - ((100 * (Math.PI / 180)) * deltaTime); config.totalAngleRotated += Math.abs((100 * (Math.PI / 180)) * deltaTime);}
+    if (keys.left === true && config.playerRotate > (-60 * (Math.PI / 180)) && config.playerX > 42) {config.playerRotate = config.playerRotate - ((100 * (Math.PI / 180)) * deltaTime); config.totalAngleRotated += Math.abs((100 * (Math.PI / 180)) * deltaTime);}
     if (keys.right === true && config.playerRotate < (60 * (Math.PI / 180)) && config.playerX < 657) {config.playerRotate = config.playerRotate + ((100 * (Math.PI / 180)) * deltaTime); config.totalAngleRotated += Math.abs((100 * (Math.PI / 180)) * deltaTime);}
     // Rotate Sled If Offscreen
     if (config.playerRotate > (-60 * (Math.PI / 180)) && config.playerX > 657) {config.playerRotate = config.playerRotate - ((100 * (Math.PI / 180)) * deltaTime); config.totalAngleRotated += Math.abs((100 * (Math.PI / 180)) * deltaTime);}
