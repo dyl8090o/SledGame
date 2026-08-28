@@ -91,14 +91,11 @@ function gameStateChange(newState){
         gameDiv.style.display = "block";
         canvas.style.display = "block";
         config.baseSpeed = -200;
+        config.roundTime = 0;
         distanceChange(null, 0);
         setUpPlayer();
         heartUpdate(null, 2)
         gameAnimationFrame();
-        config.roundsPlayed += 1;
-        config[`roundsWith${config.usedSledString}`] += 1;
-        config[`roundsWith${config.usedTrailString}`] += 1;
-        console.log(config[`roundsWith${config.usedSledString}`])
         
     } else if (newState === "gameOver"){
         gameOverDiv.style.display = "block";
@@ -110,6 +107,10 @@ function gameStateChange(newState){
         config.totalTime += config.roundTime;
         if (hitboxesThisRound === true){ config.roundsWithHitboxes += 1; hitboxesThisRound = false}
         timeDisplay.textContent = `Time: ${Math.round(config.roundTime)} s`
+                config.roundsPlayed += 1;
+        config[`roundsWith${config.usedSledString}`] += 1;
+        config[`roundsWith${config.usedTrailString}`] += 1;
+        console.log(config[`roundsWith${config.usedSledString}`])
         saveData();
     } else if (newState === "feedback"){
         feedbackDiv.style.display = "block";

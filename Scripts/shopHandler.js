@@ -23,7 +23,8 @@ function changeSled(sled){
 
     console.log(sled)
     let sledButton = document.getElementById(sled+"Button");
-    config.usedSled = (`Images/${sled}.png`);
+    if (sled === "subwaySurfersSled") { config.usedSled = (`Images/${sled}.webm`); }
+    else {config.usedSled = (`Images/${sled}.png`);}
     config.usedSledString = (sled);
     sledButton.classList.remove("unequipped");
     sledButton.classList.add("equipped");

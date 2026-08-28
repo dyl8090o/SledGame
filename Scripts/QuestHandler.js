@@ -1,7 +1,7 @@
 import { config } from "./config.js";
 
 const possibleQuests = []
-const possibleSpecialQuests = {}
+const possibleSpecialQuests = []
 
 function generateQuests() {
     possibleQuests.push
@@ -36,7 +36,7 @@ function generateQuests() {
         reward: `${Math.floor(x*.02)} UP.`,
         extraInfo: null,
         progress: null
-    }))(Math.floor(Math.random() * (160 - 70 + 1) + 80))
+    }))(Math.floor(Math.random() * (200 - 70 + 1) + 80))
 
     ((x) => ({
         x: x,
@@ -69,7 +69,7 @@ function generateQuests() {
         reward: `${Math.floor(x*.04)} UP.`,
         extraInfo: "You will have 5 seconds of grace upon round start.",
         progress: null
-    }))(Math.floor(Math.random() * (120 - 40 + 1) + 80))
+    }))(Math.floor(Math.random() * (160 - 70 + 1) + 80))
 
     ((x) => ({
         x: x,
@@ -77,7 +77,7 @@ function generateQuests() {
         reward: `${Math.floor(x*.05)} UP.`,
         extraInfo: "You will have 5 seconds of grace upon round start.",
         progress: null
-    }))(Math.floor(Math.random() * (120 - 40 + 1) + 80))
+    }))(Math.floor(Math.random() * (160 - 70 + 1) + 80))
 
     ((x) => ({
         x: x,
@@ -85,11 +85,31 @@ function generateQuests() {
         reward: `${Math.floor(x*.07)} UP.`,
         extraInfo: "You will have 5 seconds of grace upon round start.",
         progress: null
-    }))(Math.floor(Math.random() * (120 - 40 + 1) + 80))
+    }))(Math.floor(Math.random() * (160 - 70 + 1) + 80))
 
+    ((x) => ({
+        x: x,
+        quest: `Gain ${x} distance in one round with only rocks.`,
+        reward: `${Math.floor(x*.04)} UP.`,
+        extraInfo: "Only rocks will spawn while this quest is active.",
+        progress: null
+    }))(Math.floor(Math.random() * (160 - 70 + 1) + 80))
 
+    ((x) => ({
+        x: x,
+        quest: `Gain ${x} distance in one round with only wind cones.`,
+        reward: `${Math.floor(x*.05)} UP.`,
+        extraInfo: "Only wind cones will spawn while this quest is active.",
+        progress: null
+    }))(Math.floor(Math.random() * (160 - 70 + 1) + 80))
 
-
+    ((x) => ({
+        x: x,
+        quest: `Gain ${x} distance in one round with only sleds.`,
+        reward: `${Math.floor(x*.06)} UP.`,
+        extraInfo: "Only sleds will spawn while this quest is active.",
+        progress: null
+    }))(Math.floor(Math.random() * (160 - 70 + 1) + 80))
 
 }
 

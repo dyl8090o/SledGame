@@ -60,6 +60,7 @@ let storedData = [
     "roundsWithgoldSled",
     "roundsWithpurpleSled",
     "roundsWithduckSled",
+    "roundsWithsubwaySurfersSled",
     "roundsWithredCircleTrail",
     "roundsWithgreenCircleTrail",
     "roundsWithblueCircleTrail",
@@ -172,6 +173,7 @@ async function loadData(){
 
         // Load sleds
         if ("sleds" in data){
+            config.sleds = [];
             data.sleds.forEach(element => {
                 config.sleds.push(element);
                 let sled = document.getElementById(element+"Button")
@@ -184,6 +186,7 @@ async function loadData(){
 
         // Load trails
         if ("trails" in data){
+            config.trails = [];
             data.trails.forEach(element => {
                 config.trails.push(element);
                 let trail = document.getElementById(element+"TrailButton")

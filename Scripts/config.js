@@ -1,7 +1,7 @@
 export { config }
 
 const config = {
-    version: 25,
+    version: 27,
     accountName: null,
 
     coins: 0,
@@ -41,6 +41,7 @@ const config = {
     roundsWithgoldSled: 0,
     roundsWithpurpleSled: 0,
     roundsWithduckSled: 0,
+    roundsWithsubwaySurfersSled: 0,
     roundsWithredCircleTrail: 0,
     roundsWithgreenCircleTrail: 0,
     roundsWithblueCircleTrail: 0,
@@ -99,6 +100,7 @@ const config = {
     goldSledCost: 12,
     purpleSledCost: 12,
     duckSledCost: 36,
+    subwaySurfersSledCost: 72,
 
     redCircleTrailCost: 6,
     greenCircleTrailCost: 6,

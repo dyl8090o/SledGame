@@ -12,6 +12,12 @@ let rockHitXModifier = 0;
 let rockHitYModifier = 0;
 
 
+const subwaySurfersSledVideo = document.createElement("video");
+subwaySurfersSledVideo.src = "Images/subwaySurfersSled.webm";
+subwaySurfersSledVideo.loop = true;
+subwaySurfersSledVideo.muted = true;
+subwaySurfersSledVideo.playsInline = true;
+
 const sledImage = new Image();
 sledImage.src = "Images/redArrow.png";
 
@@ -19,6 +25,7 @@ function setUpPlayer(){
 
     if (config.gameState === "game"){
         sledImage.src = config.usedSled;
+        subwaySurfersSledVideo.play();
 
         config.speed = config.baseSpeed;
         config.iFrames = 0;
@@ -38,11 +45,11 @@ function movePlayer(deltaTime) {
     if (config.iFrames > 0) config.iFrames = config.iFrames - deltaTime;
 
     // Rotate Sled
-    if (keys.left === true && config.playerRotate > (-60 * (Math.PI / 180)) && config.playerX > 42) {config.playerRotate = config.playerRotate - ((100 * (Math.PI / 180)) * deltaTime); config.totalAngleRotated += Math.abs((100 * (Math.PI / 180)) * deltaTime);}
-    if (keys.right === true && config.playerRotate < (60 * (Math.PI / 180)) && config.playerX < 657) {config.playerRotate = config.playerRotate + ((100 * (Math.PI / 180)) * deltaTime); config.totalAngleRotated += Math.abs((100 * (Math.PI / 180)) * deltaTime);}
+    if (keys.left === true && config.playerRotate > (-60 * (Math.PI / 180)) && config.playerX > 42) {config.playerRotate = config.playerRotate - ((100 * (Math.PI / 180)) * deltaTime); config.totalAngleRotated += Math.abs((100) * deltaTime);}
+    if (keys.right === true && config.playerRotate < (60 * (Math.PI / 180)) && config.playerX < 657) {config.playerRotate = config.playerRotate + ((100 * (Math.PI / 180)) * deltaTime); config.totalAngleRotated += Math.abs((100) * deltaTime);}
     // Rotate Sled If Offscreen
-    if (config.playerRotate > (-60 * (Math.PI / 180)) && config.playerX > 657) {config.playerRotate = config.playerRotate - ((100 * (Math.PI / 180)) * deltaTime); config.totalAngleRotated += Math.abs((100 * (Math.PI / 180)) * deltaTime);}
-    if (config.playerRotate < (60 * (Math.PI / 180)) && config.playerX < 42) {config.playerRotate = config.playerRotate + ((100 * (Math.PI / 180)) * deltaTime); config.totalAngleRotated += Math.abs((100 * (Math.PI / 180)) * deltaTime);}
+    if (config.playerRotate > (-60 * (Math.PI / 180)) && config.playerX > 657) {config.playerRotate = config.playerRotate - ((100 * (Math.PI / 180)) * deltaTime); config.totalAngleRotated += Math.abs((100) * deltaTime);}
+    if (config.playerRotate < (60 * (Math.PI / 180)) && config.playerX < 42) {config.playerRotate = config.playerRotate + ((100 * (Math.PI / 180)) * deltaTime); config.totalAngleRotated += Math.abs((100) * deltaTime);}
     // Move Sled Based On Rotation
     if (config.playerX > 44 && config.playerRotate < 0 || config.playerX < 655 && config.playerRotate > 0){config.playerX = config.playerX + ((125 * Math.sin(config.playerRotate)*1.25) * deltaTime); config.totalHorizontalMovement += Math.abs((125 * Math.sin(config.playerRotate)*1.25) * deltaTime);}
 
@@ -69,7 +76,13 @@ function movePlayer(deltaTime) {
     context.save();
     context.translate(config.playerX, config.playerY);
     context.rotate(config.playerRotate)
-    context.drawImage(sledImage, -config.playerWidth/2, -config.playerHeight/2, config.playerWidth, config.playerHeight)
+    if (config.usedSled === "Images/subwaySurfersSled.webm"){
+        context.beginPath();
+        context.arc(0, 0, config.playerWidth/2, 0, Math.PI*2)
+        context.clip();
+        context.drawImage(subwaySurfersSledVideo, -config.playerWidth/2, -config.playerHeight/2, config.playerWidth, config.playerHeight)
+    } 
+    else {context.drawImage(sledImage, -config.playerWidth/2, -config.playerHeight/2, config.playerWidth, config.playerHeight)}
     context.restore();
 
     let speedDisplay = document.getElementById("speedDisplay");

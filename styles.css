@@ -704,6 +704,18 @@ body {
     left: 50%;
 }
 
+#shopDiv video {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 45%;
+    left: 50%;
+}
+
+
 #shopDiv p {
     color: black;
     font-size: 24px;
@@ -841,7 +853,12 @@ body {
     left: 25%;
 }
 
-
+#shopDiv #subwaySurfersSled {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 83%;
+    left: 37.5%;
+}
 
 
 
