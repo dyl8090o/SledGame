@@ -18,17 +18,20 @@ function changeSled(sled){
     allSledButtons.forEach(button => {
         button.classList.add("unequipped");
         button.classList.remove("equipped");
-        button.textContent = "Unequipped";
+
+        let text = button.querySelector(".buttonText")
+        text.textContent = "Unequipped";
     })
 
     console.log(sled)
     let sledButton = document.getElementById(sled+"Button");
+    let sledButtonText = sledButton.querySelector(".buttonText")
     if (sled === "subwaySurfersSled") { config.usedSled = (`Images/${sled}.webm`); }
     else {config.usedSled = (`Images/${sled}.png`);}
     config.usedSledString = (sled);
     sledButton.classList.remove("unequipped");
     sledButton.classList.add("equipped");
-    sledButton.textContent = "Equipped";
+    sledButtonText.textContent = "Equipped";
 }
 
 function changeTrail(trail){

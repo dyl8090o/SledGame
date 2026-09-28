@@ -15,6 +15,28 @@ import { config } from "./config.js";
 import { coinsChange, gameStateChange, distanceChange } from "./main.js";
 export { heartUpdate }
 
+const animatedImages = [
+    {element: document.createElement("video"), name: "heart"},
+    {element: document.createElement("video"), name: "brokenHeart"},
+    {element: document.createElement("video"), name: "emptyHeart"},
+]
+
+const heart = animatedImages[0].element;
+const brokenHeart = animatedImages[1].element;
+const emptyHeart = animatedImages[2].element;
+
+
+animatedImages.forEach(image => {
+    let video = image.element
+    video.src = `Images/${image.name}.webm`;
+    video.loop = true;
+    video.muted = true;
+    video.playsInline = true;
+    video.autoplay = true;
+    video.preload = "auto";
+    video.play()
+})
+
 let playButton = document.getElementById("playButton")
 playButton.addEventListener( "click", function() {
     gameStateChange("game");
@@ -57,7 +79,25 @@ feedbackSubmitButton.addEventListener( "click", function(){
     }
 })
 
+let logsButton = document.getElementById("logsButton")
+logsButton.addEventListener( "click", function() {
+    gameStateChange("logs");
+});
 
+let logsMainMenuButton = document.getElementById("logsMainMenuButton")
+logsMainMenuButton.addEventListener( "click", function() {
+    gameStateChange("mainMenu");
+});
+
+let upgradesButton = document.getElementById("upgradesButton")
+upgradesButton.addEventListener( "click", function() {
+    gameStateChange("upgrades");
+});
+
+let upgradesMainMenuButton = document.getElementById("upgradesMainMenuButton")
+upgradesMainMenuButton.addEventListener( "click", function() {
+    gameStateChange("mainMenu");
+});
 
 /* Free Coin Debug Button 
 let freeCoin = document.getElementById("freeCoin")
@@ -69,6 +109,7 @@ freeCoin.addEventListener( "click", function() {
 function heartUpdate(setHearts, changeBy){
     let heart1 = document.getElementById("heart1");
     let heart2 = document.getElementById("heart2")
+    let heart3 = document.getElementById("heart3")
 
     if(setHearts != null){
         config.lives = setHearts;
@@ -80,12 +121,30 @@ function heartUpdate(setHearts, changeBy){
         console.log(`Time: ${config.roundTime}`)
         gameStateChange("gameOver");
     } else if(config.lives === 1){
-        heart1.src = "Images/heart.png"
-        heart2.src = "Images/BrokenHeart.png"   
+        heart1.src = heart.src;
+        heart2.src = brokenHeart.src
+        heart3.src = brokenHeart.src
     } else if(config.lives === 2){
-        heart1.src = "Images/heart.png"
-        heart2.src = "Images/heart.png"
+        heart1.src = heart.src
+        heart2.src = heart.src
+        heart3.src = brokenHeart.src
+    } else if(config.lives === 3){
+        heart1.src = heart.src
+        heart2.src = heart.src
+        heart3.src = heart.src
     }
+
+    if (config.hearts === 1){ heart2.src = emptyHeart.src; heart3.src = emptyHeart.src; }
+    if (config.hearts === 2){ heart3.src = emptyHeart.src; }
+    heart1.load();
+    heart1.play();
+    heart2.load();
+    heart2.play();
+    heart3.load();
+    heart3.play();
+    heart1.loop = true;
+    heart2.loop = true;
+    heart3.loop = true;
 }
 
 setInterval(() => {
@@ -106,6 +165,8 @@ async function checkVersion() {
         
         disabledVersions = docSnap.data().disabledVersions
         if (disabledVersions.includes(config.version)){ gameDisabled = true }
+        let minVersion = docSnap.data().minVersion
+        if (minVersion > config.version){ gameDisabled = true }
     }
 
     // console.log(`version: ${config.version} | Firebase version: ${versionNumber}`)

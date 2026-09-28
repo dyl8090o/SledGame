@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Geist Pixel', sans-serif;
 }
 
 body {
@@ -55,49 +55,67 @@ body {
     left: 50%;
 }
 
-#mainMenuDiv button {
+#mainMenuDiv #titleImage {
     color: black;
-    background-color: rgb(158, 186, 238);
-    border-color: rgb(27, 53, 105);
+    width: 20%;
+
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 15%;
+    left: 49.5%;
+}
+
+#mainMenuDiv button {
+    background-color: transparent;
+    border: transparent;
+    color: black;
     font-size: 32px;
     font-weight: 300;
     transition: .2s;
 
-    border-radius: 50%;
-    corner-shape: squircle;
-    border-width: 3px;
-
     width: 10%;
-    padding-top: 5px;
-    padding-bottom: 5px;;
 
     position: absolute;
     transform: translate(-50%, -50%);
     left: 50%;
 }
 
-#mainMenuDiv #playButton{
+#mainMenuDiv img {
+    position: absolute;
+    transform: translate(-50%, 0%);
+    z-index: 998;
+}
+
+#mainMenuDiv p {
+    position: absolute;
+    transform: translate(-50%);
+    left: 50%;
+    z-index: 999;
+}
+
+#mainMenuDiv #playButton {
     top: 30%;
 }
 
-#mainMenuDiv #shopButton{
+#mainMenuDiv #shopButton {
     top: 40%;
 }
 
-#mainMenuDiv #skillsButton{
+#mainMenuDiv #logsButton {
+    top: 60%;
+}
+
+#mainMenuDiv #upgradesButton{
     top: 50%;
-    text-decoration: line-through;
-    text-decoration-thickness: 2px;
 }
 
 #mainMenuDiv #feedbackButton{
-    top: 65%;
+    top: 70%;
 }
 
 #mainMenuDiv button:hover{
     transform: scale(1.1) translate(-45%, -45%);
-    background-color: rgb(130, 164, 221);
-    border-color: rgb(13, 32, 70);
+    filter: brightness(80%)
 }
 
 #mainMenuDiv #versionIdentifier {
@@ -107,42 +125,42 @@ body {
 
     position: absolute;
     bottom: 1%;
-    left: 1%;
+    left: 15%;
 }
 
-#mainMenuDiv #plannedFeaturesTitle {
+#mainMenuDiv #tipDisplay {
     color: black;
-    font-size: 32px;
-    font-weight: 450;
+    font-size: 24px;
+    font-weight: 400;
+    max-width: 75%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     position: absolute;
     transform: translate(-50%, -50%);
-    top: 3%;
-    left: 8%;
-}
-
-#mainMenuDiv #plannedFeatureList {
-    color: black;
-    font-size: 24px;
-    font-weight: 300;
-
-    position: absolute;
-    top: 15%;
-    left: 7%;
+    bottom: -.5%;
+    left: 50%;
 }
 
 #mainMenuDiv #signUpButton{
     left: 91.25%;
-    top: 97%;
-    font-size: 18px;
+    top: 95.5%;
     width: 5%;
 }
 
 #mainMenuDiv #logInButton{
     left: 96.75%;
-    top: 97%;
-    font-size: 18px;
+    top: 95.5%;
     width: 5%;
+}
+
+#mainMenuDiv .signLogButtonText {
+    font-size: 17px;
+    text-wrap: nowrap;
+    position: absolute;
+    transform: translate(-50%, 20%);
+    z-index: 999;
 }
 
 #mainMenuDiv #accountDiv #signLogDiv{
@@ -197,33 +215,41 @@ body {
 #mainMenuDiv #accountDiv #forgotPassword{
     text-align: center;
     color: #614141;
-    width: 80%;
+    width: 90%;
     font-size: 12px;
 
     position: relative;
     transform: translate(-50%, -50%);
-    top: 26px;
+    top: 32px;
     left: 50%;
 }
 
-#mainMenuDiv #accountDiv #accountButton{
+#mainMenuDiv #accountDiv #accountButton {
     left: 50%;
-    top: 80%;
+    top: 70%;
     font-size: 16px;
     width: 85%;
-    height: 25%;
+    height: 2%;
+}
+
+#mainMenuDiv #accountButton p {
+    font-size: 17px;
+    text-wrap: nowrap;
+    position: absolute;
+    transform: translate(-50%, 20%);
+    z-index: 999;
 }
 
 #mainMenuDiv #userIdentifier {
     color: black;
     font-size: 24px;
     font-weight: 300;
+    text-wrap: nowrap;
 
     position: absolute;
     bottom: 1%;
-    right: 1%;
+    left: 90%;
 }
-
 
 /* #endregion */
 
@@ -240,7 +266,7 @@ body {
     font-weight: 350;
 
     position: absolute;
-    top: 3%;
+    top: 7%;
     left: 2%;
 }
 
@@ -250,7 +276,7 @@ body {
     font-weight: 350;
 
     position: absolute;
-    top: 17%;
+    top: 21%;
     left: 2%;
 }
 
@@ -260,19 +286,27 @@ body {
     font-weight: 350;
 
     position: absolute;
-    top: 10%;
+    top: 14%;
     left: 2%;
 }
 
-#gameDiv #heartContainer {
+#gameDiv .hearts {
     position: absolute;
     transform: translate(-50%, -50%);
     top: 5%;
-    left: 22%;
+    left: 10%;
 }
 
-#gameDiv #heart2 {
-    margin-left: 15px;
+#gameDiv #heart1 {
+    left: 7%;
+}
+
+#gameDiv #heart3 {
+    left: 13%;
+}
+
+#gameDiv .hearts {
+    margin-right: 10px;
 }
 
 #gameDiv #activeQuestsTitle {
@@ -334,15 +368,67 @@ body {
     background-color: rgb(207, 207, 207);
 }
 
+#gameDiv .redArea {
+    background-color:rgb(248, 50, 50);
+    opacity: .1;
+}
+
+#gameDiv #topHalfRed {
+    width: 700px;
+    height: 450px;
+
+    position: absolute;
+    transform: translate(-50%, 0%);
+    top: 47px;
+    left: 50%;
+}
+
+#gameDiv #bottomHalfRed {
+    width: 700px;
+    height: 450px;
+
+    position: absolute;
+    transform: translate(-50%, 0%);
+    bottom: 46px;
+    left: 50%;
+}
+
+#gameDiv #topThirdRed {
+    width: 700px;
+    height: 300px;
+
+    position: absolute;
+    transform: translate(-50%, 0%);
+    top: 46px;
+    left: 50%;
+}
+
+#gameDiv #bottomThirdRed {
+    width: 700px;
+    height: 300px;
+
+    position: absolute;
+    transform: translate(-50%, 0%);
+    bottom: 46px;
+    left: 50%;
+}
+
 /* #endregion */
 
 /* #region Quests */
 
-#mainMenuDiv #questsDiv {
+#questsDiv {
+    color: #8d8d8d;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
     background-color: #d3d3d3;
-    min-height: 400px;
+    min-height: 0px;
     width: 25%;
-    height: 50%;
+    padding-bottom: 12px;
+
+    border-radius: 20%;
+    corner-shape: squircle;
 
     position: relative;
     top: 46px;
@@ -351,37 +437,149 @@ body {
     z-index: 5;
 }
 
-#mainMenuDiv #questsTitle {
+#questsDiv #questsTitle {
     color: black;
     font-size: 48px;
     font-weight: 450;
 
-    position: absolute;
-    top: 0%;
-    left: 5%;
+    position: relative;
+    left: 170px;
 }
 
-#mainMenuDiv #questsDisabled {
-    color: rgb(116, 44, 44);
-    font-size: 48px;
-    font-weight: 450;
+#questsDiv #quest1 {
+    background-color: #c5c3c3;
+    color: #000000;
+    min-height: 100px;
+    width: 90%;
+    padding-bottom: 30px;
 
-    transform: rotate(15deg);
-    position: absolute;
-    top: 30%;
-    left: 15%;
+    border-radius: 30%;
+    corner-shape: squircle;
+
+    position: relative;
+    transform: translate(-50%);
+    left: 50%;
+
+    z-index: 5;
 }
 
-#mainMenuDiv #plannedFeatureList {
-    color: black;
+#questsDiv #quest2 {
+    background-color: #c5c3c3;
+    color: #000000;
+    min-height: 100px;
+    width: 90%;
+    padding-bottom: 30px;
+
+    border-radius: 30%;
+    corner-shape: squircle;
+
+    position: relative;
+    transform: translate(-50%);
+    left: 50%;
+
+    z-index: 5;
+}
+
+#questsDiv #questInfo {
+    font-size: 14.8px;
+    font-weight: 350;
+
+    position: relative;
+    top: -10px;
+    left: 30px;
+    width: 90%;
+}
+
+#questsDiv .questTitle {
     font-size: 24px;
-    font-weight: 300;
+    font-weight: 450;
+
+    position: relative;
+    top: 20px;
+    left: 30px;
+    max-width: 300px;
+}
+
+#questsDiv .questExtra {
+    font-size: 20px;
+    font-weight: 350;
+
+    position: relative;
+    top: 25px;
+    left: 50px;
+    max-width: 320px;
+}
+
+#questsDiv .questReward {
+    font-size: 20px;
+    font-weight: 350;
+
+    position: relative;
+    top: 30px;
+    left: 50px;
+    max-width: 320px;
+}
+
+#questsDiv .questProgText {
+    font-size: 20px;
+    font-weight: 350;
+
+    position: relative;
+    top: 4px;
+    left: 250px;
+    max-width: 320px;
+}
+
+#questsDiv .questProgBar {
+    background-color: #7c7c7c;
+    width: 80%;
+    height: 10px;
+    left: 10%;
+    overflow: hidden;
+
+    border-radius: 40%;
+    corner-shape: squircle;
+
+    position: relative;
+    top: 10px;
+}
+
+#questsDiv .questProgFill {
+    background-color: #5aee35;
+    width: 0%;
+    height: 100%;
+
+    border-radius: 30%;
+    corner-shape: squircle;
+
+    position: relative;
+    transition: .5s;
+}
+
+#questsDiv .questButton {
+    color: transparent;
+    background-color: transparent;
+    border-color: transparent;
+    transition: .2s;
+
+    width: 50px;
+    height: 50px;
 
     position: absolute;
-    transform: translate(-50%, -50%);
-    top: 15%;
-    left: 7%;
+    top: 20px;
+    right: 30px;
+    z-index: 1;
 }
+
+#questsDiv .questButton img {
+    width: 100%;
+}
+
+#questsDiv .questButton:hover{
+    transform: scale(1.1);
+    filter: brightness(80%)
+}
+
 
 /* #endregion */
 
@@ -432,32 +630,53 @@ body {
     z-index: -2;
 }
 
+
+
 #feedbackDiv button {
     color: black;
-    background-color: rgb(158, 186, 238);
-    border-color: rgb(27, 53, 105);
-    font-size: 24px;
+    background-color: transparent;
+    border-color: transparent;
+    font-size: 32px;
     font-weight: 300;
     transition: .2s;
 
-    border-radius: 50%;
-    corner-shape: squircle;
-    border-width: 3px;
-
-    width: 5%;
-    padding-top: 5px;
-    padding-bottom: 5px;;
+    width: 10%;
 
     position: absolute;
     transform: translate(-50%, -50%);
-    top: 74%;
+    top: 22.5%;
     left: 40%;
     z-index: 1;
 }
 
+#feedbackDiv button img {
+    position: absolute;
+    transform: translate(-50%, 0%);
+    z-index: 998;
+}
+
+#feedbackDiv button p {
+    position: absolute;
+    transform: translate(-50%);
+    left: 50%;
+    z-index: 999;
+}
+
+
+#logsDiv #logsMainMenuButton:hover{
+    transform: scale(1.1) translate(-45%, -50%);
+    filter: brightness(80%)
+}
+
+#feedbackDiv #feedbackMainMenuButton {
+    width: 10%;
+    top: 72%;
+    left: 40%;
+}
+
 #feedbackDiv #feedbackSubmit {
     width: 10%;
-    top: 74%;
+    top: 72%;
     left: 50%;
 }
 
@@ -483,7 +702,7 @@ body {
     color: black;
     background-color: rgb(158, 186, 238);
     border-color: rgb(27, 53, 105);
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 300;
     width: 25%;
     height: 5%;
@@ -499,8 +718,373 @@ body {
 
 #feedbackDiv button:hover{
     transform: scale(1.1) translate(-45%, -45%);
-    background-color: rgb(130, 164, 221);
-    border-color: rgb(13, 32, 70);
+    filter: brightness(80%)
+}
+
+/* #endregion */
+
+/* #region upgradesDiv */
+
+#upgradesBody{
+
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    position: fixed;
+    background-color: rgb(128, 107, 177);
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+#upgradesDiv {
+
+    position: relative;
+    background-color: rgb(107, 84, 160);
+    min-height: 100%;
+    min-width: 100%;
+    z-index: 0;
+}
+
+#upgradesDiv .upgradeNode {
+
+    background-color: rgb(112, 59, 211);
+    border-color: rgb(103, 19, 182);
+    border-width: 5px;
+    border-style: solid;
+
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+
+
+    position: fixed;
+    transform: translate(-50%, -50%);
+    
+    z-index: 1;
+    transition: .2s;
+}
+
+#upgradesDiv .upgradeNode:hover {
+    transform: scale(1.2) translate(-40%, -40%);
+    background-color: rgb(102, 38, 180);
+    video{
+        transform: scale(1.25) translate(-40%, -40%);
+    }
+}
+
+#upgradesDiv .upgradeNode video {
+    width: 60%;
+    height: 60%;
+
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+
+    transition: .4s;
+}
+
+#upgradesDiv #upgradesSvg {
+
+
+    min-height: 100%;
+    min-width: 100%;
+    
+    stroke: rgb(83, 22, 133);
+    stroke-width: 3px;
+
+    position: absolute;
+    z-index: 0;
+}
+
+
+#upgradesDiv #upgradeHoverBack {
+    color: #8970f8;
+    background-color: #5c0b92;
+    min-height: 0px;
+    max-height: fit-content;
+    min-width: 50px;
+    max-width: 300px;
+
+    border-radius: 25%;
+    corner-shape: squircle;
+    outline: 10px solid #43036d;
+
+    position: fixed;
+
+    pointer-events: none;
+    z-index: 100;
+    padding: 8px;
+    padding-bottom: 12px;
+}
+
+#upgradesDiv #upgradeHoverBack p {
+    text-align: center;
+}
+
+#upgradesDiv #upgradeHoverBack #upgradeTitle {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+#upgradesDiv #upgradeHoverBack #upgradeDesc {
+    padding-top: 8px;
+    font-size: 18px;
+    font-weight: 350;
+}
+
+#upgradesDiv #upgradeHoverBack #upgradeCost {
+    padding-top: 8px;
+    font-size: 18px;
+    font-weight: 350;
+}
+
+#upgradesDiv #upgradesMainMenuButton {
+    color: black;
+    background-color: transparent;
+    border-color: transparent;
+    font-size: 32px;
+    font-weight: 300;
+    transition: .2s;
+
+    width: 10%;
+
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 2.5%;
+    left: 6%;
+    z-index: 1;
+}
+
+#upgradesDiv #upgradesMainMenuButton img {
+    position: absolute;
+    transform: translate(-50%, 0%);
+    z-index: 998;
+}
+
+#upgradesDiv #upgradesMainMenuButton p {
+    position: absolute;
+    transform: translate(-50%);
+    left: 50%;
+    z-index: 999;
+}
+
+#upgradesDiv #upgradesMainMenuButton:hover{
+    transform: scale(1.1) translate(-45%, -45%);
+}
+
+#upgradesDiv #upgradesUPDisplay {
+    color: black;
+    font-size: 48px;
+    font-weight: 350;
+
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 12%;
+    left: 6%;
+}
+
+#upgradesDiv .abilityKey {
+    background-color: transparent;
+    border-color: transparent;
+    width: 100px;
+    height: 100px;
+
+    position: absolute;
+    transition: .2s;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#upgradesDiv .abilityKey p {
+    font-size: 24px;
+    margin: 0;
+
+    position: absolute;
+    top: 10%;
+    left: 15%;
+}
+
+#upgradesDiv .abilityImg {
+    width: 50%;
+    height: 50%;
+
+    position: absolute;
+    top: 35%;
+    left: 30%;
+}
+
+#upgradesDiv .abilityKey:hover{
+    transform: scale(1.1);
+}
+
+#upgradesDiv #EKey {
+    top: 3%;
+    right: 2%;
+}
+
+#upgradesDiv #QKey {
+    top: 3%;
+    right: 8%;
+}
+
+#upgradesDiv #QKeyName {
+    font-size: 14px;
+
+    transform: translate(-50%, -50%);
+    top: 70%;
+    left: 50%;
+}
+
+#upgradesDiv #EKeyName {
+    font-size: 14px;
+
+    transform: translate(-50%, -50%);
+    top: 70%;
+    left: 50%;
+}
+
+#upgradesDiv #maxActiveUpgrades {
+    color: #000000;
+    font-size: 24px;
+
+    position: absolute;
+    top: 15%;
+    right: 2%;
+}
+
+video {
+    pointer-events: none;
+}
+
+/* #endregion */
+
+/* #region logsDiv */
+
+#logsDiv h {
+
+    color: black;
+    font-size: 64px;
+    font-weight: 700;
+
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 25%;
+    left: 50%;
+
+}
+
+#logsDiv #logsBack {
+    background-color: rgb(130, 158, 194);
+    width: 575.391px;
+    height: 595.797px;
+
+    border-radius: 20%;
+    corner-shape: squircle;
+    border-width: 8px;
+
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    z-index: -1;
+}
+
+#logsDiv #logsBorder {
+    background-color: rgb(81, 102, 128);
+    width: 32%;
+    height: 63.5%;
+
+    border-radius: 20%;
+    corner-shape: squircle;
+    border-width: 8px;
+
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    z-index: -2;
+}
+
+#logsDiv #logsMainMenuButton {
+    color: black;
+    background-color: transparent;
+    border-color: transparent;
+    font-size: 32px;
+    font-weight: 300;
+    transition: .2s;
+
+    width: 10%;
+
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 22.5%;
+    left: 40%;
+    z-index: 1;
+}
+
+#logsDiv #logsMainMenuButton img {
+    position: absolute;
+    transform: translate(-50%, 0%);
+    z-index: 998;
+}
+
+#logsDiv #logsMainMenuButton p {
+    position: absolute;
+    transform: translate(-50%);
+    left: 50%;
+    z-index: 999;
+}
+
+
+#logsDiv #logsMainMenuButton:hover{
+    transform: scale(1.1) translate(-45%, -50%);
+    filter: brightness(80%)
+}
+
+#logsDiv #logsList {
+    box-sizing: border-box;
+    list-style-type: none;
+    color: black;
+    position: relative;
+    height: 90%;
+    width: 100%;
+    top: 10%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin: 0;
+    padding: 60px 40px 40px 0px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%);
+    mask-image: linear-gradient(to bottom, transparent, black 15%);
+
+    scrollbar-color: transparent transparent;
+}
+
+#logsDiv .logListVersion {
+    list-style-type: none;
+    padding: 0;
+    margin-left: 10%;
+    font-size: 32px;
+    font-weight: 450;
+    top: 20%;
+    left: 10%;
+}
+
+#logsDiv .logListItems {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    font-size: 24px;
+    font-weight: 300;
+    margin-left: 20px;
 }
 
 /* #endregion */
@@ -515,6 +1099,18 @@ body {
     position: absolute;
     transform: translate(-50%, -50%);
     top: 15%;
+    left: 50%;
+}
+
+#gameOverDiv #gameOverPureDisplay {
+    color: black;
+    font-size: 20px;
+    font-weight: 400;
+    font-style: italic;
+
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 19.2%;
     left: 50%;
 }
 
@@ -553,31 +1149,43 @@ body {
 
 #gameOverDiv button {
     color: black;
-    background-color: rgb(158, 186, 238);
-    border-color: rgb(27, 53, 105);
+    background-color: transparent;
+    border-color: transparent;
     font-size: 32px;
     font-weight: 300;
     transition: .2s;
 
-    border-radius: 50%;
-    corner-shape: squircle;
-    border-width: 3px;
-
     width: 10%;
-    padding-top: 5px;
-    padding-bottom: 5px;;
+    height: 5%;
 
     position: absolute;
     transform: translate(-50%, -50%);
-    top: 49%;
+    top: 48%;
     left: 50%;
+    z-index: 1;
 }
 
-#gameOverDiv button:hover{
-    transform: scale(1.1) translate(-45%, -45%);
-    background-color: rgb(130, 164, 221);
-    border-color: rgb(13, 32, 70);
+#gameOverDiv button img {
+    width: 100%;
+    height: 120%;
+    position: absolute;
+    transform: translate(-50%, -40%);
+    z-index: 998;
 }
+
+#gameOverDiv button p {
+    position: absolute;
+    transform: translate(-50%, -40%);
+    left: 50%;
+    z-index: 999;
+}
+
+
+#gameOverDiv button:hover{
+    transform: scale(1.1) translate(-45%, -50%);
+    filter: brightness(80%)
+}
+
 
 /* #endregion */
 
@@ -628,21 +1236,24 @@ body {
     z-index: -2;
 }
 
+#shopDiv img {
+    width: 80px;
+    height: 80px;
+
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 45%;
+    left: 50%;
+}
+
 #shopDiv #shopMainMenuButton {
     color: black;
-    background-color: rgb(158, 186, 238);
-    border-color: rgb(27, 53, 105);
+    background-color: transparent;
+    border-color: transparent;
     font-size: 32px;
     font-weight: 300;
     transition: .2s;
-
-    border-radius: 50%;
-    corner-shape: squircle;
-    border-width: 3px;
-
-    width: 10%;
-    padding-top: 5px;
-    padding-bottom: 5px;;
+    width: 10%;;
 
     position: absolute;
     transform: translate(-50%, -50%);
@@ -651,10 +1262,25 @@ body {
     z-index: 1;
 }
 
+
+#shopDiv #shopMainMenuButton img {
+    width: 100%;
+
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+
+#shopDiv #shopMainMenuButton p {
+    font-size: 42px;
+
+    position: absolute;
+    z-index: 999;
+}
+
+
 #shopDiv #shopMainMenuButton:hover{
-    transform: scale(1.1) translate(-45%, -45%);
-    background-color: rgb(130, 164, 221);
-    border-color: rgb(13, 32, 70);
+    transform: scale(1.1) translate(-45.5%, -45.5%);
+    filter: brightness(80%);
 }
 
 #shopDiv #shopCoinsDisplay {
@@ -694,15 +1320,7 @@ body {
     z-index: -1;
 }
 
-#shopDiv img {
-    width: 80px;
-    height: 80px;
 
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 45%;
-    left: 50%;
-}
 
 #shopDiv video {
     width: 80px;
@@ -730,15 +1348,11 @@ body {
 
 #shopDiv button {
     color: black;
-    background-color: rgb(158, 186, 238);
-    border-color: rgb(27, 53, 105);
+    background-color: transparent;
+    border-color: transparent;
     font-size: 20px;
     font-weight: 350;
     transition: .2s;
-
-    border-radius: 50%;
-    corner-shape: squircle;
-    border-width: 3px;
 
     width: 80%;
     padding-top: 0px;
@@ -750,22 +1364,122 @@ body {
     left: 50%;
 }
 
+#shopDiv .sledButton {
+    top: 75%;
+    height: 3%;
+    left: 50%;
+    width: 90%;
+
+    position: relative;
+    transform: translate(-50%, 0%);
+}
+
+#shopDiv .sledButton img {
+    width: 80%;
+    height: 800%;
+
+    position: absolute;
+    transform: translate(-50%, -25%);
+}
+
+#shopDiv .sledButton p {
+    top: 8px;
+    z-index: 999;
+
+    position: relative;
+    transform: translate(-50%, -50%);
+}
+
+#shopDiv .sledButton:hover{
+    transform: scale(1.1) translate(-45.5%, -020%);
+    filter: brightness(80%);
+}
+
 #shopDiv #sledButton {
-    width: 10%;
     top: 20%;
+    height: 3%;
     left: 43%;
+    width: 12%;
+
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+
+#shopDiv #sledButton img {
+    width: 100%;
+    height: 200%;
+
+    position: relative;
+    transform: translate(-50%, -50%);
+}
+
+#shopDiv #sledButton p {
+    top: 5px;
+    z-index: 999;
+}
+
+#shopDiv #sledButton:hover{
+    transform: scale(1.1) translate(-45%, -45%);
+    filter: brightness(80%);
+}
+
+#shopDiv .trailButton {
+    top: 75%;
+    height: 3%;
+    left: 50%;
+    width: 90%;
+
+    position: relative;
+    transform: translate(-50%, 0%);
+}
+
+#shopDiv .trailButton img {
+    width: 80%;
+    height: 800%;
+
+    position: absolute;
+    transform: translate(-50%, -25%);
+}
+
+#shopDiv .trailButton p {
+    top: 8px;
+    z-index: 999;
+
+    position: relative;
+    transform: translate(-50%, -50%);
+}
+
+#shopDiv .trailButton:hover{
+    transform: scale(1.1) translate(-45.5%, -020%);
+    filter: brightness(80%);
 }
 
 #shopDiv #trailButton {
-    width: 10%;
     top: 20%;
+    height: 3%;
     left: 57%;
+    width: 12%;
+
+    position: absolute;
+    transform: translate(-50%, -50%);
 }
 
-#shopDiv button:hover{
+#shopDiv #trailButton img {
+    width: 100%;
+    height: 200%;
+
+    position: relative;
+    transform: translate(-50%, -50%);
+}
+
+#shopDiv #trailButton p {
+    top: 5px;
+    z-index: 999;
+}
+
+#shopDiv #trailButton:hover{
     transform: scale(1.1) translate(-45%, -45%);
-    background-color: rgb(130, 164, 221);
-    border-color: rgb(13, 32, 70);
+    filter: brightness(80%);
 }
 
 #shopDiv #freeCoin {
@@ -853,11 +1567,32 @@ body {
     left: 25%;
 }
 
-#shopDiv #subwaySurfersSled {
+#shopDiv #penguinSled {
     position: absolute;
     transform: translate(-50%, -50%);
     top: 83%;
     left: 37.5%;
+}
+
+#shopDiv #sharkSled {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 83%;
+    left: 50%;
+}
+
+#shopDiv #sunFishSled {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 83%;
+    left: 62.5%;
+}
+
+#shopDiv #subwaySurfersSled {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 83%;
+    left: 75%;
 }
 
 
@@ -976,8 +1711,4 @@ body {
 }
 
 /* #endregion */
-
-
-
-
 

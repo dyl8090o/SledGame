@@ -9,8 +9,9 @@ const trailImage = new Image();
 
 
 // Line Trails
+let solidTrails = [`Images/redCircle.png`, `Images/greenCircle.png`, `Images/blueCircle.png`, `Images/orangeCircle.png`, `Images/purpleCircle.png`];
 setInterval (() => {
-    if (config.gameState === "game" && [`Images/redCircle.png`, `Images/greenCircle.png`, `Images/blueCircle.png`, `Images/orangeCircle.png`, `Images/purpleCircle.png`].includes(config.usedTrail)){
+    if (config.gameState === "game" && solidTrails.includes(config.usedTrail)){
        trailNodes.push({ x: config.playerX, y: config.playerY, rotation: 0, transparency: 1 }) 
     }
 }, 10)
@@ -27,7 +28,6 @@ function moveTrails(deltaTime) {
 for(let i = 0; i < trailNodes.length; i++){
     trailNodes[i].transparency -= (deltaTime/1);
 
-    
 
     // Draw Trail
     context.save();
