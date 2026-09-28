@@ -39,24 +39,28 @@ function changeTrail(trail){
     allTrailButtons.forEach(button => {
         button.classList.add("unequipped");
         button.classList.remove("equipped");
-        button.textContent = "Unequipped";
+
+        let text = button.querySelector(".buttonText")
+        if (text) { text.textContent = "Unequipped"; }
     })
 
     console.log(trail)
     let trailButton = document.getElementById(trail+"TrailButton");
+    let trailButtonText = trailButton.querySelector(".buttonText")
      console.log(trailButton)
     if(`Images/${trail}.png` === config.usedTrail){
         config.usedTrail = "none";
         trailButton.classList.add("unequipped");
         trailButton.classList.remove("equipped");
-        trailButton.textContent = "Unequipped";
+        trailButtonText.textContent = "Unequipped";
     } else {
     config.usedTrail = (`Images/${trail}.png`);
     config.usedTrailString = (trail+"Trail");
     trailButton.classList.remove("unequipped");
     trailButton.classList.add("equipped");
-    trailButton.textContent = "Equipped";
+    trailButtonText.textContent = "Equipped";
     }
+    console.log(config.usedTrail)
 }
 
 document.addEventListener("DOMContentLoaded", function() {

@@ -124,8 +124,9 @@ body {
     font-weight: 400;
 
     position: absolute;
+    transform: translate(0%, 0%);
     bottom: 1%;
-    left: 15%;
+    left: 1%;
 }
 
 #mainMenuDiv #tipDisplay {
@@ -1642,7 +1643,7 @@ video {
     left: 25%;
 }
 
-#shopDiv #heartTrail {
+#shopDiv #heartTrailTrail {
     position: absolute;
     transform: translate(-50%, -50%);
     top: 59%;
