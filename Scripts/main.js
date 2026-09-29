@@ -4,7 +4,7 @@ import { moveObstacles } from "./ObstacleHandler.js";
 import { heartUpdate } from "./UIHandler.js";
 import { moveTrails } from "./trailHandler.js";
 import { saveData, loadData } from "./accountHandler.js";
-import { updateNodes } from "./upgradeHandler.js"; 
+import { updateNodes } from "./UpgradeHandler.js"; 
 import { abilityUpdate, setUpAbilities } from "./abilityHandler.js";
 import { rerollQuests } from "./QuestHandler.js";
 export { gameStateChange, distanceChange, coinsChange, UPChange, obstacleHit, updateQuests }

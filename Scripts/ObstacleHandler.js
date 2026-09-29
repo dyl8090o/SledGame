@@ -1,6 +1,6 @@
 import { config } from "./config.js";
 import { obstacleHit, coinsChange, updateQuests } from "./main.js"
-import { updateNodes } from "./upgradeHandler.js";
+import { updateNodes } from "./UpgradeHandler.js";
 export { moveObstacles }
 
 let canvas = document.getElementById("gameCanvas");

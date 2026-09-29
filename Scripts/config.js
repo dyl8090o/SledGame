@@ -1,7 +1,7 @@
 export { config }
 
 const config = {
-    version: 30,
+    version: 31,
     accountName: null,
 
     coins: 0,

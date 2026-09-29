@@ -15,7 +15,7 @@ const auth = getAuth(app);
 
 import { config } from "./config.js";
 import { coinsChange, UPChange } from "./main.js";
-import { upgrades, loadUpgrades } from './upgradeHandler.js';
+import { upgrades, loadUpgrades } from "./UpgradeHandler.js"
 export { saveData, loadData }
 
 let accountDiv = document.getElementById("accountDiv");
