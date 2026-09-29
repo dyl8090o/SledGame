@@ -8,7 +8,7 @@ let context = canvas.getContext("2d")
 
 const animatedImages = [
     {element: document.createElement("video"), name: "rock"},
-    {element: document.createElement("video"), name: "campfire"},
+    {element: document.createElement("video"), name: "campFire"},
     {element: document.createElement("video"), name: "windCone"},
     {element: document.createElement("video"), name: "snowMan"},
     {element: document.createElement("video"), name: "darkRock"},
